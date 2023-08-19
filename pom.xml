@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.grupo27</groupId>
-	<artifactId>techchallange01</artifactId>
+	<artifactId>techchallenge02</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>techchallange01</name>
-	<description>Tech Challange para a fase 01 da pós em Software-Architecture da Fiap</description>
+	<name>techchallenge02</name>
+	<description>Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso de Software Architecture da FIAP Pós Tech.</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

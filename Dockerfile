@@ -2,7 +2,7 @@ FROM azul/zulu-openjdk-alpine:17 as builder
 
 WORKDIR /app
 
-COPY ./target/techchallange01-0.0.1-SNAPSHOT.war /app/tech-challenge.war
+COPY ./target/techchallenge02-0.0.1-SNAPSHOT.war /app/tech-challenge.war
 
 FROM azul/zulu-openjdk-alpine:17
 
