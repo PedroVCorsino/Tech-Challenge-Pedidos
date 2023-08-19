@@ -1,6 +1,6 @@
 # Tech-Challenge
 
-Desafio desenvolvido para a fase 1 do curso de Software Architecture da FIAP Pós Tech.
+Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso de Software Architecture da FIAP Pós Tech.
 
 ## Versão
 1.0.0
