@@ -2,8 +2,8 @@ package br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository;
 
 import java.util.List;
 
-import br.com.grupo27.techchallenge02.core.entities.model.Pedido;
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.model.Pedido;
 
 public interface PedidoRepositoryPort {
 

@@ -1,120 +1,63 @@
 package br.com.grupo27.techchallenge02.application.usecases;
 
-import org.springframework.stereotype.Service;
-
-import br.com.grupo27.techchallenge02.application.dto.ProdutoDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Acompanhamento;
-import br.com.grupo27.techchallenge02.core.entities.model.Bebida;
-import br.com.grupo27.techchallenge02.core.entities.model.Lanche;
-import br.com.grupo27.techchallenge02.core.entities.model.Sobremesa;
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.AcompanhamentoRepositoryPort;
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.BebidaRepositoryPort;
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.LancheRepositoryPort;
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.SobremesaRepositoryPort;
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.ProdutoService;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+import br.com.grupo27.techchallenge02.Domain.enums.Categoria;
+import br.com.grupo27.techchallenge02.Domain.model.Produto;
+import br.com.grupo27.techchallenge02.application.config.mappers.ProdutoMapper;
+import br.com.grupo27.techchallenge02.application.dto.ProdutoDTO;
+import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.ProdutoRepositoryPort;
+import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.ProdutoService;
+
 public class ProdutoServiceImpl implements ProdutoService {
 
-    private final LancheRepositoryPort lancheRepository;
-    private final AcompanhamentoRepositoryPort acompanhamentoRepository;
-    private final BebidaRepositoryPort bebidaRepository;
-    private final SobremesaRepositoryPort sobremesaRepository;
+    private final ProdutoRepositoryPort produtoRepository;
+    private final ProdutoMapper produtoMapper;
 
-    public ProdutoServiceImpl(LancheRepositoryPort lancheRepository,
-                              AcompanhamentoRepositoryPort acompanhamentoRepository,
-                              BebidaRepositoryPort bebidaRepository,
-                              SobremesaRepositoryPort sobremesaRepository) {
-        this.lancheRepository = lancheRepository;
-        this.acompanhamentoRepository = acompanhamentoRepository;
-        this.bebidaRepository = bebidaRepository;
-        this.sobremesaRepository = sobremesaRepository;
+    public ProdutoServiceImpl(ProdutoRepositoryPort produtoRepository, ProdutoMapper produtoMapper) {
+        this.produtoRepository = produtoRepository;
+        this.produtoMapper = produtoMapper;
+    }
+
+    @Override
+    public ProdutoDTO createProduto(ProdutoDTO produtoDTO) {
+        Produto produto = produtoDTO.toProduto();
+        produto = produtoRepository.saveProduto(produto);
+        return produtoMapper.domainToDto(produto);
+    }
+
+    @Override
+    public ProdutoDTO updateProduto(Long id, ProdutoDTO produtoDTO) {
+        Produto produto = produtoDTO.toProduto();
+        produto = produtoRepository.updateProduto(id, produto);
+        return produto != null ? produtoMapper.domainToDto(produto) : null;
+    }
+
+    @Override
+    public ProdutoDTO getProdutoById(Long id) {
+        Produto produto = produtoRepository.findProdutoById(id);
+        return produto != null ? produtoMapper.domainToDto(produto) : null;
+    }
+
+    @Override
+    public boolean deleteProduto(Long id) {
+        return produtoRepository.deleteProduto(id);
     }
 
     @Override
     public List<ProdutoDTO> getAllProdutos() {
-        List<ProdutoDTO> produtos = lancheRepository.listAllLanches().stream()
-                .map(this::convertLancheToDTO)
+        return produtoRepository.listAllProdutos().stream()
+                .map(produtoMapper::domainToDto)
                 .collect(Collectors.toList());
-        produtos.addAll(acompanhamentoRepository.listAllAcompanhamentos().stream()
-                .map(this::convertAcompanhamentoToDTO)
-                .collect(Collectors.toList()));
-        produtos.addAll(bebidaRepository.listAllBebidas().stream()
-                .map(this::convertBebidaToDTO)
-                .collect(Collectors.toList()));
-        produtos.addAll(sobremesaRepository.listAllSobremesas().stream()
-                .map(this::convertSobremesaToDTO)
-                .collect(Collectors.toList()));
-        return produtos;
     }
 
     @Override
-    public List<ProdutoDTO> getProdutosByTipo(String tipo) {
-        List<ProdutoDTO> produtos = null;
-        switch (tipo.toLowerCase()) {
-            case "lanche":
-                produtos = lancheRepository.listAllLanches().stream()
-                        .map(this::convertLancheToDTO)
-                        .collect(Collectors.toList());
-                break;
-            case "acompanhamento":
-                produtos = acompanhamentoRepository.listAllAcompanhamentos().stream()
-                        .map(this::convertAcompanhamentoToDTO)
-                        .collect(Collectors.toList());
-                break;
-            case "bebida":
-                produtos = bebidaRepository.listAllBebidas().stream()
-                        .map(this::convertBebidaToDTO)
-                        .collect(Collectors.toList());
-                break;
-            case "sobremesa":
-                produtos = sobremesaRepository.listAllSobremesas().stream()
-                        .map(this::convertSobremesaToDTO)
-                        .collect(Collectors.toList());
-                break;
-        }
-        return produtos;
-    }
-
-    private ProdutoDTO convertLancheToDTO(Lanche lanche) {
-        ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setId(lanche.getId());
-        produtoDTO.setNome(lanche.getNome());
-        produtoDTO.setDescricao(lanche.getDescricao());
-        produtoDTO.setPreco(lanche.getPreco());
-        produtoDTO.setTipo("Lanche");
-        return produtoDTO;
-    }
-
-    private ProdutoDTO convertAcompanhamentoToDTO(Acompanhamento acompanhamento) {
-        ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setId(acompanhamento.getId());
-        produtoDTO.setNome(acompanhamento.getNome());
-        produtoDTO.setDescricao(acompanhamento.getDescricao());
-        produtoDTO.setPreco(acompanhamento.getPreco());
-        produtoDTO.setTipo("Acompanhamento");
-        return produtoDTO;
-    }
-
-    private ProdutoDTO convertBebidaToDTO(Bebida bebida) {
-        ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setId(bebida.getId());
-        produtoDTO.setNome(bebida.getNome());
-        produtoDTO.setDescricao(bebida.getDescricao());
-        produtoDTO.setPreco(bebida.getPreco());
-        produtoDTO.setTipo("Bebida");
-        return produtoDTO;
-    }
-
-    private ProdutoDTO convertSobremesaToDTO(Sobremesa sobremesa) {
-        ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setId(sobremesa.getId());
-        produtoDTO.setNome(sobremesa.getNome());
-        produtoDTO.setDescricao(sobremesa.getDescricao());
-        produtoDTO.setPreco(sobremesa.getPreco());
-        produtoDTO.setTipo("Sobremesa");
-        return produtoDTO;
+    public List<ProdutoDTO> getProdutosByCategoria(Categoria categoria) {
+        return produtoRepository.listByCategoria(categoria).stream()
+                .map(produtoMapper::domainToDto)
+                .collect(Collectors.toList());
     }
 }

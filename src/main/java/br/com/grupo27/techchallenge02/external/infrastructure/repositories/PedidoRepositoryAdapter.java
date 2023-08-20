@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.model.Pedido;
 import br.com.grupo27.techchallenge02.application.config.mappers.PedidoMapper;
-import br.com.grupo27.techchallenge02.core.entities.model.Pedido;
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
 import br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities.PedidoEntity;
 import br.com.grupo27.techchallenge02.external.infrastructure.repositories.JPA.PedidoJPA;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.PedidoRepositoryPort;

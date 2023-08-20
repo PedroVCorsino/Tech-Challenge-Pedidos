@@ -2,8 +2,8 @@ package br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository;
 
 import java.util.List;
 
-import br.com.grupo27.techchallenge02.core.entities.model.Cliente;
-import br.com.grupo27.techchallenge02.core.valuesObjects.ValidadorCPF;
+import br.com.grupo27.techchallenge02.Domain.model.Cliente;
+import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
 
 public interface ClienteRepositoryPort {
     Cliente saveCliente(Cliente clienteDTO);

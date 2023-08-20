@@ -22,23 +22,23 @@ public class ComboEntity {
     
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private PedidoEntity pedido;
+    private ProdutoEntity pedido;
 
     @ManyToOne
     @JoinColumn(name = "lanche_id")
-    private LancheEntity lanche;
+    private ProdutoEntity lanche;
 
     @ManyToOne
     @JoinColumn(name = "acompanhamento_id")
-    private AcompanhamentoEntity acompanhamento;
+    private ProdutoEntity acompanhamento;
 
     @ManyToOne
     @JoinColumn(name = "bebida_id")
-    private BebidaEntity bebida;
+    private ProdutoEntity bebida;
 
     @ManyToOne
     @JoinColumn(name = "sobremesa_id")
-    private SobremesaEntity sobremesa;
+    private ProdutoEntity sobremesa;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
@@ -61,35 +61,35 @@ public class ComboEntity {
         this.id = id;
     }
 
-    public LancheEntity getLanche() {
+    public ProdutoEntity getLanche() {
         return lanche;
     }
 
-    public void setLanche(LancheEntity lanche) {
+    public void setLanche(ProdutoEntity lanche) {
         this.lanche = lanche;
     }
 
-    public AcompanhamentoEntity getAcompanhamento() {
+    public ProdutoEntity getAcompanhamento() {
         return acompanhamento;
     }
 
-    public void setAcompanhamento(AcompanhamentoEntity acompanhamento) {
+    public void setAcompanhamento(ProdutoEntity acompanhamento) {
         this.acompanhamento = acompanhamento;
     }
 
-    public BebidaEntity getBebida() {
+    public ProdutoEntity getBebida() {
         return bebida;
     }
 
-    public void setBebida(BebidaEntity bebida) {
+    public void setBebida(ProdutoEntity bebida) {
         this.bebida = bebida;
     }
 
-    public SobremesaEntity getSobremesa() {
+    public ProdutoEntity getSobremesa() {
         return sobremesa;
     }
 
-    public void setSobremesa(SobremesaEntity sobremesa) {
+    public void setSobremesa(ProdutoEntity sobremesa) {
         this.sobremesa = sobremesa;
     }
 

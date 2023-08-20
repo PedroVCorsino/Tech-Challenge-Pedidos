@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.grupo27.techchallenge02.Domain.model.Cliente;
+import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Cliente;
-import br.com.grupo27.techchallenge02.core.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.ClienteRepositoryPort;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.ClienteService;
 

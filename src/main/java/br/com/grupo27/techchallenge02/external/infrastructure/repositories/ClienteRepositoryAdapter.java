@@ -3,8 +3,8 @@ package br.com.grupo27.techchallenge02.external.infrastructure.repositories;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.grupo27.techchallenge02.core.entities.model.Cliente;
-import br.com.grupo27.techchallenge02.core.valuesObjects.ValidadorCPF;
+import br.com.grupo27.techchallenge02.Domain.model.Cliente;
+import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities.ClienteEntity;
 import br.com.grupo27.techchallenge02.external.infrastructure.repositories.JPA.ClienteJPA;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.repository.ClienteRepositoryPort;

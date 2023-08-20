@@ -2,17 +2,17 @@ package br.com.grupo27.techchallenge02.interfaceAdapters.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.model.Pedido;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Pedido;
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.PedidoService;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("api/pedido")
+@Controller
 public class PedidoController {
 
     private final PedidoService pedidoService;
@@ -21,13 +21,11 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    @PostMapping
     public ResponseEntity<PedidoDTO> createPedido(@RequestBody PedidoDTO pedidoDTO) {
         PedidoDTO createdPedido = pedidoService.createPedido(pedidoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPedido);
     }
 
-    @PutMapping("/{id}")
     public ResponseEntity<PedidoDTO> updatePedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO) {
         try {
             PedidoDTO updatedPedido = pedidoService.updatePedido(id, pedidoDTO);
@@ -41,7 +39,6 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/{id}")
     public ResponseEntity<PedidoDTO> getPedidoById(@PathVariable Long id) {
         try {
             PedidoDTO pedido = pedidoService.getPedidoById(id);
@@ -55,7 +52,6 @@ public class PedidoController {
         }
     }
 
-    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
         try {
             boolean deleted = pedidoService.deletePedido(id);
@@ -69,13 +65,11 @@ public class PedidoController {
         }
     }
 
-    @GetMapping("/all")
     public ResponseEntity<List<PedidoDTO>> getAllPedidos() {
         List<PedidoDTO> pedidos = pedidoService.getAllPedidos();
         return ResponseEntity.ok(pedidos);
     }
 
-    @GetMapping("/verifica-pagamento/{id}")
     public ResponseEntity<Boolean> verificaPagamento(@PathVariable Long id) {
         try {
             PedidoDTO pedidoAtualizado = pedidoService.verificaStatusPagamento(id);
@@ -91,8 +85,6 @@ public class PedidoController {
         }
     }
 
-
-    @GetMapping("/status-pagamento")
     public ResponseEntity<List<PedidoDTO>> getPedidosByStatusPagamento(@RequestParam boolean pago) {
         try {
             List<PedidoDTO> pedidos = pedidoService.findPedidosByStatusPagamento(pago);
@@ -106,7 +98,6 @@ public class PedidoController {
         }
     }
 
-   @GetMapping("/status/{status}")
     public ResponseEntity<List<Pedido>> getPedidosByStatus(@PathVariable StatusPedido status) {
         try {
             List<Pedido> pedidos = pedidoService.findPedidosByStatus(status);

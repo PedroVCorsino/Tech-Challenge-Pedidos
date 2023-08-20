@@ -3,7 +3,7 @@ package br.com.grupo27.techchallenge02.application.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
 
 public record PedidoDTO(
     Long id,

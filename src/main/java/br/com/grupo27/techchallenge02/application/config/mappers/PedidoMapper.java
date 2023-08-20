@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import br.com.grupo27.techchallenge02.Domain.model.Combo;
+import br.com.grupo27.techchallenge02.Domain.model.Pedido;
 import br.com.grupo27.techchallenge02.application.dto.ComboDTO;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Combo;
-import br.com.grupo27.techchallenge02.core.entities.model.Pedido;
 import br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities.ComboEntity;
 import br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities.PedidoEntity;
 

@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.List;
 
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
 
 @Entity
 @Table(name = "PEDIDO")

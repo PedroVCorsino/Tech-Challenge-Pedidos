@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
-import br.com.grupo27.techchallenge02.core.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.ClienteService;
 
 import java.util.List;

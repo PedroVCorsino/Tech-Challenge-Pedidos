@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.Domain.model.Pedido;
 import br.com.grupo27.techchallenge02.application.config.mappers.PedidoMapper;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Pedido;
-import br.com.grupo27.techchallenge02.core.enums.StatusPedido;
 import br.com.grupo27.techchallenge02.external.infrastructure.repositories.PedidoRepositoryAdapter;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.client.PagamentosClient;
 import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase.PedidoService;

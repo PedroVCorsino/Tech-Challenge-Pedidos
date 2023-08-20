@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 
 public record ComboDTO(
     Long id,
-    LancheDTO lanche,
-    AcompanhamentoDTO acompanhamento,
-    BebidaDTO bebida,
-    SobremesaDTO sobremesa,
+    ProdutoDTO lanche,
+    ProdutoDTO acompanhamento,
+    ProdutoDTO bebida,
+    ProdutoDTO sobremesa,
     Integer quantidade,
     BigDecimal valorUnitario,
     BigDecimal valorTotal

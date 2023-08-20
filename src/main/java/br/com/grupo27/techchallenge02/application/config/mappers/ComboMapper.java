@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
+import br.com.grupo27.techchallenge02.Domain.model.Combo;
 import br.com.grupo27.techchallenge02.application.dto.ComboDTO;
-import br.com.grupo27.techchallenge02.core.entities.model.Combo;
 import br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities.ComboEntity;
 
 @Component
@@ -15,6 +15,7 @@ public class ComboMapper {
     // private final AcompanhamentoMapper acompanhamentoMapper;
     // private final BebidaMapper bebidaMapper;
     // private final SobremesaMapper sobremesaMapper;
+    private final ProdutoMapper produtoMapper;
 
     // public ComboMapper(LancheMapper lancheMapper, AcompanhamentoMapper acompanhamentoMapper,
     //                    BebidaMapper bebidaMapper, SobremesaMapper sobremesaMapper) {
@@ -23,7 +24,9 @@ public class ComboMapper {
     //     this.bebidaMapper = bebidaMapper;
     //     this.sobremesaMapper = sobremesaMapper;
     // }
-    public ComboMapper(){}
+    public ComboMapper(ProdutoMapper produtoMapper){
+        this.produtoMapper = produtoMapper;
+    }
 
     public ComboEntity domainToEntity(Combo combo) {
         if (combo == null) {
@@ -32,10 +35,10 @@ public class ComboMapper {
 
         ComboEntity comboEntity = new ComboEntity();
         comboEntity.setId(combo.getId());
-        comboEntity.setLanche(combo.getLanche().toEntity());
-        comboEntity.setAcompanhamento(combo.getAcompanhamento().toEntity());
-        comboEntity.setBebida(combo.getBebida().toEntity());
-        comboEntity.setSobremesa(combo.getSobremesa().toEntity());
+        comboEntity.setLanche(produtoMapper.domainToEntity(combo.getLanche()));
+        comboEntity.setAcompanhamento(produtoMapper.domainToEntity(combo.getAcompanhamento()));
+        comboEntity.setBebida(produtoMapper.domainToEntity(combo.getBebida()));
+        comboEntity.setSobremesa(produtoMapper.domainToEntity(combo.getSobremesa()));
         comboEntity.setQuantidade(combo.getQuantidade());
         comboEntity.setValorUnitario(combo.getValorUnitario());
         comboEntity.setValorTotal(combo.getValorTotal());
@@ -49,10 +52,10 @@ public class ComboMapper {
             }
 
             Combo combo = new Combo();
-            combo.setLanche(comboDTO.lanche().toLanche());
-            combo.setAcompanhamento(comboDTO.acompanhamento().toAcompanhamento());
-            combo.setBebida(comboDTO.bebida().toBebida());
-            combo.setSobremesa(comboDTO.sobremesa().toSobremesa());
+            combo.setLanche(produtoMapper.dtoToDomain(comboDTO.lanche()));
+            combo.setAcompanhamento(produtoMapper.dtoToDomain(comboDTO.acompanhamento()));
+            combo.setBebida(produtoMapper.dtoToDomain(comboDTO.bebida()));
+            combo.setSobremesa(produtoMapper.dtoToDomain(comboDTO.sobremesa()));
             combo.setQuantidade(comboDTO.quantidade());
             combo.setValorUnitario(comboDTO.valorUnitario());
             combo.setValorTotal(comboDTO.valorTotal());
@@ -65,16 +68,16 @@ public class ComboMapper {
             return null;
         }
 
-        ComboDTO comboDTO = new ComboDTO(combo.getId(), 
-            combo.getLanche().toDTO(), 
-            combo.getAcompanhamento().toDTO(),
-            combo.getBebida().toDTO(),
-            combo.getSobremesa().toDTO(),
+        return new ComboDTO(combo.getId(), 
+            produtoMapper.domainToDto(combo.getLanche()), 
+            produtoMapper.domainToDto(combo.getAcompanhamento()),
+            produtoMapper.domainToDto(combo.getBebida()),
+            produtoMapper.domainToDto(combo.getSobremesa()),
             combo.getQuantidade(),
             combo.getValorUnitario(),
             combo.getValorTotal());
 
-        return comboDTO;
+        // return comboDTO;
     }
 
     public Combo entityToDomain(ComboEntity comboEntity) {
@@ -84,10 +87,10 @@ public class ComboMapper {
 
         Combo combo = new Combo();
         combo.setId(comboEntity.getId());
-        combo.setLanche(comboEntity.getLanche().toLanche());
-        combo.setAcompanhamento(comboEntity.getAcompanhamento().toAcompanhamento());
-        combo.setBebida(comboEntity.getBebida().toBebida());
-        combo.setSobremesa(comboEntity.getSobremesa().toSobremesa());
+        combo.setLanche(produtoMapper.entityToDomain(comboEntity.getLanche()));
+        combo.setAcompanhamento(produtoMapper.entityToDomain(comboEntity.getAcompanhamento()));
+        combo.setBebida(produtoMapper.entityToDomain(comboEntity.getBebida()));
+        combo.setSobremesa(produtoMapper.entityToDomain(comboEntity.getSobremesa()));
         combo.setQuantidade(comboEntity.getQuantidade());
         combo.setValorUnitario(comboEntity.getValorUnitario());
         combo.setValorTotal(comboEntity.getValorTotal());

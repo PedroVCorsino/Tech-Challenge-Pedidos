@@ -2,8 +2,8 @@ package br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.usecase;
 
 import java.util.List;
 
+import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
-import br.com.grupo27.techchallenge02.core.valuesObjects.ValidadorCPF;
 
 public interface ClienteService {
 
