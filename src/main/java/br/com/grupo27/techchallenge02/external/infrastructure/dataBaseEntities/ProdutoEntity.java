@@ -2,8 +2,8 @@ package br.com.grupo27.techchallenge02.external.infrastructure.dataBaseEntities;
 
 import java.math.BigDecimal;
 
-import br.com.grupo27.techchallenge02.Domain.enums.Categoria;
-import br.com.grupo27.techchallenge02.Domain.model.Produto;
+import br.com.grupo27.techchallenge02.domain.enums.Categoria;
+import br.com.grupo27.techchallenge02.domain.model.Produto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

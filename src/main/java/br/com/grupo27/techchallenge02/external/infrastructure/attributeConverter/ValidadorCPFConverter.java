@@ -1,6 +1,6 @@
 package br.com.grupo27.techchallenge02.external.infrastructure.attributeConverter;
 
-import br.com.grupo27.techchallenge02.Domain.valuesObjects.ValidadorCPF;
+import br.com.grupo27.techchallenge02.domain.valuesObjects.ValidadorCPF;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

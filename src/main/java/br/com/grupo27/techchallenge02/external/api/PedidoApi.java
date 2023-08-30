@@ -3,10 +3,10 @@ package br.com.grupo27.techchallenge02.external.api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.grupo27.techchallenge02.Domain.enums.StatusPedido;
-import br.com.grupo27.techchallenge02.Domain.model.Pedido;
+import br.com.grupo27.techchallenge02.adapters.controllers.PedidoController;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
-import br.com.grupo27.techchallenge02.interfaceAdapters.controllers.PedidoController;
+import br.com.grupo27.techchallenge02.domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.domain.model.Pedido;
 
 import java.util.List;
 

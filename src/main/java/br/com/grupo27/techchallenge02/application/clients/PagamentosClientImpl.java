@@ -1,7 +1,7 @@
 package br.com.grupo27.techchallenge02.application.clients;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import br.com.grupo27.techchallenge02.interfaceAdapters.interfaces.client.PagamentosClient;
+import br.com.grupo27.techchallenge02.adapters.interfaces.client.PagamentosClient;
 import reactor.core.publisher.Mono;
 
 public class PagamentosClientImpl implements PagamentosClient {
