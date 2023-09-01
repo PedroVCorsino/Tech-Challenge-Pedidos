@@ -13,8 +13,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import br.com.grupo27.techchallenge02.domain.enums.StatusPedido;
@@ -41,17 +45,26 @@ public class PedidoEntity {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
-
     @Column(name = "pago", nullable = false)
     private boolean pago;
 
-    public PedidoEntity(Long id, Long idCliente, List<ComboEntity> combos, BigDecimal valorTotal, StatusPedido status, boolean pago) {
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dt_cadastro", updatable = false)
+    private Date dataCadastro;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dt_alteracao", updatable = true)
+    private Date dataAlteracao;
+
+    public PedidoEntity(Long id, Long idCliente, List<ComboEntity> combos, BigDecimal valorTotal, StatusPedido status, boolean pago, Date dataCadastro, Date dataAlteracao) {
         this.id = id;
         this.idCliente = idCliente;
         this.combos = combos;
         this.valorTotal = valorTotal;
         this.status = status;
         this.pago = pago;
+        this.dataCadastro = dataCadastro;
+        this.dataAlteracao = dataAlteracao;
     }
 
     public PedidoEntity(){
@@ -113,5 +126,21 @@ public class PedidoEntity {
                     .map(ComboEntity::getValorTotal)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
+    }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Date getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
     }
 }

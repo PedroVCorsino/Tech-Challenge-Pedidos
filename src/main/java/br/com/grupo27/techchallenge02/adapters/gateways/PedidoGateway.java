@@ -20,5 +20,7 @@ public interface PedidoGateway {
     List<Pedido> findPedidosByStatusPagamento(boolean pago);
 
     List<Pedido> findPedidosByStatus(StatusPedido status);
+
+    List<Pedido> findPedidosAtivos();
     
 }

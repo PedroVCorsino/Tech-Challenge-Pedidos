@@ -64,4 +64,10 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
     public List<Pedido> findPedidosByStatus(StatusPedido status) {
         return pedidoAdapter.findPedidosByStatus(status);
     }
+
+    @Override
+    public List<PedidoDTO> findPedidosAtivos(){
+        List<Pedido> pedidos = pedidoAdapter.findPedidosAtivos();
+        return pedidos.stream().map(pedidoMapper::domainToDto).collect(Collectors.toList());
+    }
 }

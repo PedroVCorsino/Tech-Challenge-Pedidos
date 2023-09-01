@@ -82,4 +82,17 @@ public class PedidoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    public ResponseEntity<List<PedidoDTO>> getPedidosAtivos() {
+        try {
+            List<PedidoDTO> pedidos = pedidoUseCase.findPedidosAtivos();
+            if (!pedidos.isEmpty()) {
+                return ResponseEntity.ok(pedidos);
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

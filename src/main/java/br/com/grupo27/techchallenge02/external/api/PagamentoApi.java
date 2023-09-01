@@ -22,7 +22,7 @@ public class PagamentoApi {
         this.controller = controller;
     }
 
-    @GetMapping("/verifica-pagamento/{pedido_id}")
+    @GetMapping("/verifica-pagamento/{id}")
     public ResponseEntity<Boolean> verificaPagamento(@PathVariable Long id) {
         return controller.verificaPagamento(id);
     }

@@ -34,7 +34,9 @@ public class PedidoMapper {
                 comboEntities,
                 pedido.getValorTotal(),
                 pedido.getStatus(),
-                pedido.isPago()
+                pedido.isPago(),
+                pedido.getDataCadastro(),
+                pedido.getDataAlteracao()
         );
     }
 
@@ -49,7 +51,9 @@ public class PedidoMapper {
                 comboDTOs,
                 pedido.getValorTotal(),
                 pedido.getStatus(),
-                pedido.isPago()
+                pedido.isPago(),
+                pedido.getDataCadastro(),
+                pedido.getDataAlteracao()
         );
     }
 
@@ -66,7 +70,9 @@ public class PedidoMapper {
                 combos,
                 pedidoDTO.valorTotal(),
                 pedidoDTO.status(),
-                pedidoDTO.pago()
+                pedidoDTO.pago(),
+                pedidoDTO.dataCadastro(),
+                pedidoDTO.dataAlteracao()
         );
     }
 
@@ -81,7 +87,9 @@ public class PedidoMapper {
                 combos,
                 pedidoEntity.getValorTotal(),
                 pedidoEntity.getStatus(),
-                pedidoEntity.isPago()
+                pedidoEntity.isPago(),
+                pedidoEntity.getDataCadastro(),
+                pedidoEntity.getDataAlteracao()
         );
     }
 }

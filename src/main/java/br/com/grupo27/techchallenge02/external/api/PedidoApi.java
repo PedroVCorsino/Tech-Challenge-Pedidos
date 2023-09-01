@@ -49,4 +49,9 @@ public class PedidoApi {
     public ResponseEntity<List<Pedido>> getPedidosByStatus(@PathVariable StatusPedido status) {
         return controller.getPedidosByStatus(status);
     }
+
+    @GetMapping("/ativos")
+    public ResponseEntity<List<PedidoDTO>> getPedidosAtivos() {
+        return controller.getPedidosAtivos();
+    }
 }

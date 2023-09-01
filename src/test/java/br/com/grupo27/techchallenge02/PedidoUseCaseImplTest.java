@@ -39,7 +39,7 @@ public class PedidoUseCaseImplTest {
     @Test
     void deveBuscarPedidoPorId() {
         Long id = 1L;
-        PedidoDTO pedidoDTO = new PedidoDTO(id, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false);
+        PedidoDTO pedidoDTO = new PedidoDTO(id, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false, null, null);
 
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
         when(pedidoAdapter.findPedidoById(ArgumentMatchers.eq(id))).thenReturn(pedido);
@@ -53,7 +53,7 @@ public class PedidoUseCaseImplTest {
 
     @Test
     void deveBuscarTodosOsPedidos() {
-        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false);
+        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false, null, null);
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
 
         when(pedidoAdapter.findAllPedidos()).thenReturn(Collections.singletonList(pedido));
@@ -67,7 +67,7 @@ public class PedidoUseCaseImplTest {
 
     @Test
     void deveCriarNovoPedido() {
-        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false);
+        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false, null, null);
 
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
         when(pedidoMapper.dtoToDomain(ArgumentMatchers.any())).thenReturn(pedido);
@@ -83,7 +83,7 @@ public class PedidoUseCaseImplTest {
      @Test
     void deveBuscarPedidosPorStatus() {
         StatusPedido status = StatusPedido.PENDENTE;
-        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false);
+        PedidoDTO pedidoDTO = new PedidoDTO(1L, 1L, Collections.emptyList(), BigDecimal.valueOf(100.0), StatusPedido.PENDENTE, false, null, null);
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
 
         when(pedidoAdapter.findPedidosByStatus(ArgumentMatchers.eq(status))).thenReturn(Collections.singletonList(pedido));

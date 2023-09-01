@@ -1,6 +1,7 @@
 package br.com.grupo27.techchallenge02.domain.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import br.com.grupo27.techchallenge02.domain.enums.StatusPedido;
@@ -12,13 +13,17 @@ public class Pedido {
     private BigDecimal valorTotal;
     private StatusPedido status;
     private boolean pago = false;
-    public Pedido(Long id, Long idCliente, List<Combo> combos, BigDecimal valorTotal, StatusPedido status, boolean pago) {
+    private Date dataCadastro;
+    private Date dataAlteracao;
+    public Pedido(Long id, Long idCliente, List<Combo> combos, BigDecimal valorTotal, StatusPedido status, boolean pago, Date dataCadastro, Date dataAlteracao) {
         this.id = id;
         this.idCliente = idCliente;
         this.combos = combos;
         this.valorTotal = valorTotal;
         this.status = status;
         this.pago = pago;
+        this.dataCadastro = dataCadastro;
+        this.dataAlteracao = dataAlteracao;
     }
 
     private BigDecimal calcularValorTotal() {
@@ -26,8 +31,6 @@ public class Pedido {
                 .map(Combo::getValorTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
-
 
     public Long getId() {
         return id;
@@ -77,4 +80,23 @@ public class Pedido {
     public void setPago(boolean pago) {
         this.pago = pago;
     }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Date getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
+    }
+
+    
+
 }

@@ -1,5 +1,7 @@
 package br.com.grupo27.techchallenge02.external.infrastructure.repositories;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public Pedido createPedido(Pedido pedido) {
         PedidoEntity pedidoEntity = pedidoMapper.domainToEntity(pedido);
+        pedidoEntity.setDataCadastro(new Date());
         PedidoEntity savedPedidoEntity = pedidoJPA.save(pedidoEntity);
         return pedidoMapper.entityToDomain(savedPedidoEntity);
     }
@@ -48,6 +51,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public Pedido updatePedido(Long id, Pedido pedido) {
         PedidoEntity pedidoEntity = pedidoMapper.domainToEntity(pedido);
+        pedidoEntity.setDataAlteracao(new Date());
         PedidoEntity savedPedidoEntity = pedidoJPA.save(pedidoEntity);
         return pedidoMapper.entityToDomain(savedPedidoEntity);
     }
@@ -72,5 +76,12 @@ public class PedidoGatewayImpl implements PedidoGateway {
         return pedidoEntities.stream()
             .map(pedidoMapper::entityToDomain)
             .collect(Collectors.toList());
+    }
+
+    public List<Pedido> findPedidosAtivos() {
+        List<PedidoEntity> pedidoEntities = pedidoJPA.findPedidosAtivos();
+        return pedidoEntities.stream()
+                .map(pedidoMapper::entityToDomain)
+                .collect(Collectors.toList());
     }
 }

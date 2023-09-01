@@ -19,5 +19,7 @@ public interface PedidoUseCase {
     boolean deletePedido(Long id);
 
     List<Pedido> findPedidosByStatus(StatusPedido status);
+
+    List<PedidoDTO> findPedidosAtivos();
     
 }
