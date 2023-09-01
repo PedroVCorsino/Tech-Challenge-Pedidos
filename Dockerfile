@@ -10,4 +10,6 @@ WORKDIR /app
 
 COPY --from=builder /app/tech-challenge.war /app/tech-challenge.war
 
+EXPOSE 8080:8080
+
 ENTRYPOINT ["java", "-jar", "/app/tech-challenge.war"]

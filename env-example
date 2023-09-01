@@ -2,4 +2,5 @@
 POSTGRES_DB="postgres"
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD="mudar123"
+POSTGRES_HOST="db"
 
