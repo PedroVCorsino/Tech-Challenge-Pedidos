@@ -18,12 +18,6 @@ public interface PedidoUseCase {
 
     boolean deletePedido(Long id);
 
-    boolean consultaStatusPagamento(Long id);
-
-    PedidoDTO verificaStatusPagamento(Long id);
-
-    List<PedidoDTO> findPedidosByStatusPagamento(boolean pago);
-
     List<Pedido> findPedidosByStatus(StatusPedido status);
     
 }

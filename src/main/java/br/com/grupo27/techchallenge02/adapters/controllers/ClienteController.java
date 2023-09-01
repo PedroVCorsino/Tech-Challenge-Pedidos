@@ -13,20 +13,20 @@ import java.util.List;
 @Controller
 public class ClienteController {
 
-    private final ClienteUseCase clienteService;
+    private final ClienteUseCase clienteUseCase;
 
-    public ClienteController(ClienteUseCase clienteService) {
-        this.clienteService = clienteService;
+    public ClienteController(ClienteUseCase clienteUseCase) {
+        this.clienteUseCase = clienteUseCase;
     }
 
     public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO clienteDTO) {
-        ClienteDTO createdCliente = clienteService.createCliente(clienteDTO);
+        ClienteDTO createdCliente = clienteUseCase.createCliente(clienteDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCliente);
     }
 
     public ResponseEntity<ClienteDTO> updateCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
         try {
-            ClienteDTO updatedCliente = clienteService.updateCliente(id, clienteDTO);
+            ClienteDTO updatedCliente = clienteUseCase.updateCliente(id, clienteDTO);
             if (updatedCliente != null) {
                 return ResponseEntity.ok(updatedCliente);
             } else {
@@ -39,7 +39,7 @@ public class ClienteController {
 
     public ResponseEntity<ClienteDTO> getClienteById(@PathVariable Long id) {
         try {
-            ClienteDTO cliente = clienteService.getClienteById(id);
+            ClienteDTO cliente = clienteUseCase.getClienteById(id);
             if (cliente != null) {
                 return ResponseEntity.ok(cliente);
             } else {
@@ -52,7 +52,7 @@ public class ClienteController {
 
     public ResponseEntity<Void> deleteCliente(@PathVariable Long id) {
         try {
-            boolean deleted = clienteService.deleteCliente(id);
+            boolean deleted = clienteUseCase.deleteCliente(id);
             if (deleted) {
                 return ResponseEntity.noContent().build();
             } else {
@@ -64,13 +64,13 @@ public class ClienteController {
     }
 
     public ResponseEntity<List<ClienteDTO>> getAllClientes() {
-        List<ClienteDTO> clientes = clienteService.getAllClientes();
+        List<ClienteDTO> clientes = clienteUseCase.getAllClientes();
         return ResponseEntity.ok(clientes);
     }
 
     public ResponseEntity<ClienteDTO> getClienteByCpf(@PathVariable String cpf) {
         try {
-            ClienteDTO cliente = clienteService.getClienteByCPF(cpf);
+            ClienteDTO cliente = clienteUseCase.getClienteByCPF(cpf);
             if (cliente != null) {
                 return ResponseEntity.ok(cliente);
             } else {

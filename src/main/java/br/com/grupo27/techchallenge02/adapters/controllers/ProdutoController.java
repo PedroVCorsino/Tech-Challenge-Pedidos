@@ -14,20 +14,20 @@ import java.util.List;
 @Controller
 public class ProdutoController {
 
-    private final ProdutoUseCase produtoService;
+    private final ProdutoUseCase produtoUseCase;
 
-    public ProdutoController(ProdutoUseCase produtoService) {
-        this.produtoService = produtoService;
+    public ProdutoController(ProdutoUseCase produtoUseCase) {
+        this.produtoUseCase = produtoUseCase;
     }
 
     public ResponseEntity<ProdutoDTO> createProduto(ProdutoDTO produtoDTO) {
-        ProdutoDTO createdProduto = produtoService.createProduto(produtoDTO);
+        ProdutoDTO createdProduto = produtoUseCase.createProduto(produtoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduto);
     }
 
     public ResponseEntity<ProdutoDTO> updateProduto(Long id, ProdutoDTO produtoDTO) {
         try {
-            ProdutoDTO updatedProduto = produtoService.updateProduto(id, produtoDTO);
+            ProdutoDTO updatedProduto = produtoUseCase.updateProduto(id, produtoDTO);
             if (updatedProduto != null) {
                 return ResponseEntity.ok(updatedProduto);
             } else {
@@ -40,7 +40,7 @@ public class ProdutoController {
 
     public ResponseEntity<ProdutoDTO> getProdutoById(Long id) {
         try {
-            ProdutoDTO produto = produtoService.getProdutoById(id);
+            ProdutoDTO produto = produtoUseCase.getProdutoById(id);
             if (produto != null) {
                 return ResponseEntity.ok(produto);
             } else {
@@ -53,7 +53,7 @@ public class ProdutoController {
 
     public ResponseEntity<Void> deleteProduto(Long id) {
         try {
-            boolean deleted = produtoService.deleteProduto(id);
+            boolean deleted = produtoUseCase.deleteProduto(id);
             if (deleted) {
                 return ResponseEntity.noContent().build();
             } else {
@@ -65,12 +65,12 @@ public class ProdutoController {
     }
 
     public ResponseEntity<List<ProdutoDTO>> getAllProdutos() {
-        List<ProdutoDTO> produtos = produtoService.getAllProdutos();
+        List<ProdutoDTO> produtos = produtoUseCase.getAllProdutos();
         return ResponseEntity.ok(produtos);
     }
 
     public ResponseEntity<List<ProdutoDTO>> getProdutosByCategoria(Categoria tipo) {
-        List<ProdutoDTO> produtos = produtoService.getProdutosByCategoria(tipo);
+        List<ProdutoDTO> produtos = produtoUseCase.getProdutosByCategoria(tipo);
         return ResponseEntity.ok(produtos);
     }
 }

@@ -15,20 +15,20 @@ import java.util.List;
 @Controller
 public class PedidoController {
 
-    private final PedidoUseCase pedidoService;
+    private final PedidoUseCase pedidoUseCase;
 
-    public PedidoController(PedidoUseCase pedidoService) {
-        this.pedidoService = pedidoService;
+    public PedidoController(PedidoUseCase pedidoUseCase) {
+        this.pedidoUseCase = pedidoUseCase;
     }
 
     public ResponseEntity<PedidoDTO> createPedido(@RequestBody PedidoDTO pedidoDTO) {
-        PedidoDTO createdPedido = pedidoService.createPedido(pedidoDTO);
+        PedidoDTO createdPedido = pedidoUseCase.createPedido(pedidoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPedido);
     }
 
     public ResponseEntity<PedidoDTO> updatePedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO) {
         try {
-            PedidoDTO updatedPedido = pedidoService.updatePedido(id, pedidoDTO);
+            PedidoDTO updatedPedido = pedidoUseCase.updatePedido(id, pedidoDTO);
             if (updatedPedido != null) {
                 return ResponseEntity.ok(updatedPedido);
             } else {
@@ -41,7 +41,7 @@ public class PedidoController {
 
     public ResponseEntity<PedidoDTO> getPedidoById(@PathVariable Long id) {
         try {
-            PedidoDTO pedido = pedidoService.getPedidoById(id);
+            PedidoDTO pedido = pedidoUseCase.getPedidoById(id);
             if (pedido != null) {
                 return ResponseEntity.ok(pedido);
             } else {
@@ -54,7 +54,7 @@ public class PedidoController {
 
     public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
         try {
-            boolean deleted = pedidoService.deletePedido(id);
+            boolean deleted = pedidoUseCase.deletePedido(id);
             if (deleted) {
                 return ResponseEntity.noContent().build();
             } else {
@@ -66,41 +66,13 @@ public class PedidoController {
     }
 
     public ResponseEntity<List<PedidoDTO>> getAllPedidos() {
-        List<PedidoDTO> pedidos = pedidoService.getAllPedidos();
+        List<PedidoDTO> pedidos = pedidoUseCase.getAllPedidos();
         return ResponseEntity.ok(pedidos);
-    }
-
-    public ResponseEntity<Boolean> verificaPagamento(@PathVariable Long id) {
-        try {
-            PedidoDTO pedidoAtualizado = pedidoService.verificaStatusPagamento(id);
-            if (pedidoAtualizado != null) {
-                return ResponseEntity.ok(true);
-            } else {
-                return ResponseEntity.ok(false);
-            }
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-        }
-    }
-
-    public ResponseEntity<List<PedidoDTO>> getPedidosByStatusPagamento(@RequestParam boolean pago) {
-        try {
-            List<PedidoDTO> pedidos = pedidoService.findPedidosByStatusPagamento(pago);
-            if (pedidos != null && !pedidos.isEmpty()) {
-                return ResponseEntity.ok(pedidos);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     public ResponseEntity<List<Pedido>> getPedidosByStatus(@PathVariable StatusPedido status) {
         try {
-            List<Pedido> pedidos = pedidoService.findPedidosByStatus(status);
+            List<Pedido> pedidos = pedidoUseCase.findPedidosByStatus(status);
             if (!pedidos.isEmpty()) {
                 return ResponseEntity.ok(pedidos);
             } else {

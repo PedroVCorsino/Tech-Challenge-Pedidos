@@ -45,17 +45,6 @@ public class PedidoApi {
         return controller.getAllPedidos();
     }
 
-    @GetMapping("/verifica-pagamento/{id}")
-    public ResponseEntity<Boolean> verificaPagamento(@PathVariable Long id) {
-        return controller.verificaPagamento(id);
-    }
-
-
-    @GetMapping("/status-pagamento")
-    public ResponseEntity<List<PedidoDTO>> getPedidosByStatusPagamento(@RequestParam boolean pago) {
-        return controller.getPedidosByStatusPagamento(pago);
-    }
-
    @GetMapping("/status/{status}")
     public ResponseEntity<List<Pedido>> getPedidosByStatus(@PathVariable StatusPedido status) {
         return controller.getPedidosByStatus(status);

@@ -3,8 +3,6 @@ package br.com.grupo27.techchallenge02.application.usecases;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-
 import br.com.grupo27.techchallenge02.adapters.gateways.ProdutoGateway;
 import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ProdutoUseCase;
 import br.com.grupo27.techchallenge02.adapters.mappers.ProdutoMapper;

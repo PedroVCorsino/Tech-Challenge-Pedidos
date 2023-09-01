@@ -16,86 +16,52 @@ import br.com.grupo27.techchallenge02.external.infrastructure.repositories.Pedid
 
 public class PedidoUseCaseImpl implements PedidoUseCase {
 
-    private final PedidoGatewayImpl PedidoAdapter;
-    private final PedidoMapper PedidoMapper;
-    private final PagamentosClient PagamentosClient;
+    private final PedidoGatewayImpl pedidoAdapter;
+    private final PedidoMapper pedidoMapper;
+    private final PagamentosClient pagamentosClient;
     
     private static final Logger logger = LoggerFactory.getLogger(PedidoUseCaseImpl.class);
 
     public PedidoUseCaseImpl(PedidoGatewayImpl pedidoAdapter,
         PedidoMapper pedidoMapper, PagamentosClient pagamentosClient) {
-        this.PedidoAdapter = pedidoAdapter;
-        this.PedidoMapper = pedidoMapper;
-        this.PagamentosClient = pagamentosClient;
+        this.pedidoAdapter = pedidoAdapter;
+        this.pedidoMapper = pedidoMapper;
+        this.pagamentosClient = pagamentosClient;
     }
 
     @Override
     public PedidoDTO getPedidoById(Long id) {
-        Pedido pedido = PedidoAdapter.findPedidoById(id);
-        return PedidoMapper.domainToDto(pedido);
+        Pedido pedido = pedidoAdapter.findPedidoById(id);
+        return pedidoMapper.domainToDto(pedido);
     }
 
     @Override
     public List<PedidoDTO> getAllPedidos() {
-        List<Pedido> pedidos = PedidoAdapter.findAllPedidos();
-        return pedidos.stream().map(PedidoMapper::domainToDto).collect(Collectors.toList());
+        List<Pedido> pedidos = pedidoAdapter.findAllPedidos();
+        return pedidos.stream().map(pedidoMapper::domainToDto).collect(Collectors.toList());
     }
 
     @Override
     public PedidoDTO createPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = PedidoMapper.dtoToDomain(pedidoDTO);
-        Pedido createdPedido = PedidoAdapter.createPedido(pedido);
-        return PedidoMapper.domainToDto(createdPedido);
+        Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
+        Pedido createdPedido = pedidoAdapter.createPedido(pedido);
+        return pedidoMapper.domainToDto(createdPedido);
     }
 
     @Override
     public PedidoDTO updatePedido(Long id, PedidoDTO pedidoDTO) {
-        Pedido pedido = PedidoMapper.dtoToDomain(pedidoDTO);
-        Pedido updatedPedido = PedidoAdapter.updatePedido(id, pedido);
-        return PedidoMapper.domainToDto(updatedPedido);
+        Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
+        Pedido updatedPedido = pedidoAdapter.updatePedido(id, pedido);
+        return pedidoMapper.domainToDto(updatedPedido);
     }
 
     @Override
     public boolean deletePedido(Long id) {
-        return PedidoAdapter.deletePedido(id);
-    }
-    
-    @Override
-    public boolean consultaStatusPagamento(Long id) {
-        return PagamentosClient.consultaStatusPagamento(id);
-    }
-
-    @Override
-    public PedidoDTO verificaStatusPagamento(Long id) {
-        Pedido pedido = PedidoAdapter.findPedidoById(id);
-
-        if (pedido == null) {
-            throw new RuntimeException("Pedido não encontrado");
-        }
-
-        if (pedido.isPago()) {
-            return PedidoMapper.domainToDto(pedido);
-        }
-
-        boolean isPago = consultaStatusPagamento(id);
-
-        if (isPago) {
-            pedido.setPago(true);
-            Pedido updatedPedido = PedidoAdapter.updatePedido(id, pedido);
-            return PedidoMapper.domainToDto(updatedPedido);
-        } else {
-            throw new RuntimeException("Pedido não pago");
-        }
-    }
-
-    @Override
-    public List<PedidoDTO> findPedidosByStatusPagamento(boolean pago) {
-        List<Pedido> pedidos = PedidoAdapter.findPedidosByStatusPagamento(pago);
-        return pedidos.stream().map(PedidoMapper::domainToDto).collect(Collectors.toList());
+        return pedidoAdapter.deletePedido(id);
     }
     
     @Override
     public List<Pedido> findPedidosByStatus(StatusPedido status) {
-        return PedidoAdapter.findPedidosByStatus(status);
+        return pedidoAdapter.findPedidosByStatus(status);
     }
 }
