@@ -26,6 +26,9 @@ public class Pedido {
         this.dataAlteracao = dataAlteracao;
     }
 
+    public Pedido() {
+    }
+
     private BigDecimal calcularValorTotal() {
         return combos.stream()
                 .map(Combo::getValorTotal)
