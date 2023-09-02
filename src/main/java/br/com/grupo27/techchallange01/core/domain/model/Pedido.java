@@ -21,6 +21,9 @@ public class Pedido {
         this.pago = pago;
     }
 
+    public Pedido() {
+    }
+
     private BigDecimal calcularValorTotal() {
         return combos.stream()
                 .map(Combo::getValorTotal)
