@@ -51,6 +51,7 @@ public class PixGeraCobrancaUseCaseImpl implements PixGeraCobrancaUseCase{
             return null;
         } catch (Exception e) {
             logger.error("Erro desconhecido: {}", e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
