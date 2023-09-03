@@ -24,19 +24,28 @@ Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso d
 - maven 3.6.3 ou superior
 - docker e docker-compose
 
-## Como rodar
+## Como rodar a aplicação
 Clone este repositório
 ```bash
-$ git clone https://github.com/PedroVCorsino/Tech-Challenge.git
+$ git clone https://github.com/PedroVCorsino/Tech-Challenge2.git
 ```
 - Abra o projeto na IDE de sua preferência
 
-- Adicione um arquivo .env com as credenciais do banco de dados, use o arquivo env-example como base.
+- Abra o diretório: deploy-kubernetes
 
-- Rode o arquivo build-and-deploy
+- Utilizamos o kubernetes rodando via docker desktop
+
+- Aplicar os seguintes manifestos:
+  
 ```bash
-$ ./build-and-deploy
+$ kubectl apply -f secrets.yaml
+$ kubectl apply -f postgress-deployment.yaml
+$ kubectl apply -f app-deployment.yaml
 ```
+- Acessar a aplicação atráves da URL:
+
+http://localhost:30001/swagger-ui/index.html#/
+
 
 ## Crieterios de aceite
 ### Documentação do sistema (DDD) utilizando a linguagem ubíqua.
