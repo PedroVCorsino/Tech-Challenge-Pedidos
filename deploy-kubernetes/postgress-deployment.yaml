@@ -34,16 +34,6 @@ spec:
             storage: 1Gi
 ---
 apiVersion: v1
-kind: Secret
-metadata:
-  name: postgres-secret
-type: Opaque
-data:
-  POSTGRES_USER: cG9zdGdyZXM=   
-  POSTGRES_PASSWORD: bXVkYXIxMjM=   
-  POSTGRES_DB: cG9zdGdyZXM=
----
-apiVersion: v1
 kind: Service
 metadata:
   name: db
