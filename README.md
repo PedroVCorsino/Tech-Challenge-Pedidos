@@ -35,7 +35,7 @@ $ git clone https://github.com/PedroVCorsino/Tech-Challenge2.git
 
 - Utilizamos o kubernetes rodando via docker desktop
 
-- aplicar os seguintes manifestos:
+- Aplicar os seguintes manifestos:
   
 ```bash
 $ kubectl apply -f secrets.yaml
