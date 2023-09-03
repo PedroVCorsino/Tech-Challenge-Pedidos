@@ -46,9 +46,9 @@ public class PagamentoUseCaseImpl implements PagamentoUsecase {
             throw new RuntimeException("Pedido não encontrado");
         }
     
-        // if (pedidoDto.pago()) {
-        //     return true; 
-        // }
+        if (pedidoDto.pago()) {
+            return true; 
+        }
     
         boolean isPago = consultaStatusPagamento(pedidoDto.id());
     
