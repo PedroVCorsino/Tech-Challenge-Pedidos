@@ -1,4 +1,4 @@
-package br.com.grupo27.techchallenge02.adapters.interfaces.usecase;
+package br.com.grupo27.techchallenge02.domain.interfaces.usecase;
 
 import java.util.List;
 

@@ -18,7 +18,7 @@ import br.com.grupo27.techchallenge02.external.infrastructure.repositories.JPA.P
 public class PedidoGatewayImpl implements PedidoGateway {
 
     private final PedidoJPA pedidoJPA;
-    private final PedidoMapper pedidoMapper; // Instância do Mapper
+    private final PedidoMapper pedidoMapper;
 
     public PedidoGatewayImpl(PedidoJPA pedidoJPA, PedidoMapper pedidoMapper) {
         this.pedidoJPA = pedidoJPA;

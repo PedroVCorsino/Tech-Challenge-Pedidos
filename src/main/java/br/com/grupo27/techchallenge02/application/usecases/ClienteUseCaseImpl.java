@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.grupo27.techchallenge02.adapters.gateways.ClienteGateway;
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ClienteUseCase;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.ClienteUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Cliente;
 import br.com.grupo27.techchallenge02.domain.valuesObjects.ValidadorCPF;
 

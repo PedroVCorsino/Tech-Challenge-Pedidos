@@ -1,8 +1,8 @@
-package br.com.grupo27.techchallenge02.adapters.pix;
+package br.com.grupo27.techchallenge02.application.usecases.pix;
 
 import br.com.efi.efisdk.EfiPay;
 import br.com.efi.efisdk.exceptions.EfiPayException;
-import br.com.grupo27.techchallenge02.Credenciais;
+import br.com.grupo27.techchallenge02.external.config.Credenciais;
 
 import java.util.HashMap;
 import java.util.Map;

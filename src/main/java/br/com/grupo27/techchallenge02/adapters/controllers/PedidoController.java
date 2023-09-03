@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.PedidoUseCase;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge02.domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.PedidoUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Pedido;
 
 import java.util.List;

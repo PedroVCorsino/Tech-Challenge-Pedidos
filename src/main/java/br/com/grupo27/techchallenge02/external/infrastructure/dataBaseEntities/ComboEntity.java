@@ -22,7 +22,7 @@ public class ComboEntity {
     
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private ProdutoEntity pedido;
+    private PedidoEntity pedido;
 
     @ManyToOne
     @JoinColumn(name = "lanche_id")

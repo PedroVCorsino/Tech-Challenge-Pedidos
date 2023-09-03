@@ -22,6 +22,11 @@ public class PagamentoApi {
         this.controller = controller;
     }
 
+    @GetMapping("/gera-qrcode/{id}")
+    public ResponseEntity<String> geraQrCodePedido(@PathVariable Long id) {
+        return controller.geraQrCodePedido(id);
+    }
+
     @GetMapping("/verifica-pagamento/{id}")
     public ResponseEntity<Boolean> verificaPagamento(@PathVariable Long id) {
         return controller.verificaPagamento(id);

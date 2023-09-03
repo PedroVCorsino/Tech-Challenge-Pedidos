@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ProdutoUseCase;
 import br.com.grupo27.techchallenge02.application.dto.ProdutoDTO;
 import br.com.grupo27.techchallenge02.domain.enums.Categoria;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.ProdutoUseCase;
 
 import java.util.List;
 

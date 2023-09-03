@@ -10,9 +10,9 @@ import org.mockito.ArgumentMatchers;
 import br.com.grupo27.techchallenge02.adapters.gateways.ClienteGateway;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
 import br.com.grupo27.techchallenge02.application.usecases.ClienteUseCaseImpl;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.ClienteUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Cliente;
 import br.com.grupo27.techchallenge02.domain.valuesObjects.ValidadorCPF;
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ClienteUseCase;
 
 import java.util.Collections;
 import java.util.List;

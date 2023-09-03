@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ClienteUseCase;
 import br.com.grupo27.techchallenge02.application.dto.ClienteDTO;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.ClienteUseCase;
 
 import java.util.List;
 

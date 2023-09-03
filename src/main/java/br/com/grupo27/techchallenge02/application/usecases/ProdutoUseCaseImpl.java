@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.grupo27.techchallenge02.adapters.gateways.ProdutoGateway;
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.ProdutoUseCase;
 import br.com.grupo27.techchallenge02.adapters.mappers.ProdutoMapper;
 import br.com.grupo27.techchallenge02.application.dto.ProdutoDTO;
 import br.com.grupo27.techchallenge02.domain.enums.Categoria;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.ProdutoUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Produto;
 
 public class ProdutoUseCaseImpl implements ProdutoUseCase {

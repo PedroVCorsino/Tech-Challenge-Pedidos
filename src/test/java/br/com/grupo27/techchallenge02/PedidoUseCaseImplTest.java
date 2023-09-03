@@ -7,13 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 
-import br.com.grupo27.techchallenge02.adapters.interfaces.client.PagamentosClient;
-import br.com.grupo27.techchallenge02.adapters.interfaces.usecase.PedidoUseCase;
+import br.com.grupo27.techchallenge02.adapters.gateways.ClienteGateway;
 import br.com.grupo27.techchallenge02.adapters.mappers.PedidoMapper;
 import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
 
 import br.com.grupo27.techchallenge02.application.usecases.PedidoUseCaseImpl;
 import br.com.grupo27.techchallenge02.domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.PagamentoUsecase;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.PedidoUseCase;
+import br.com.grupo27.techchallenge02.domain.interfaces.usecase.pix.PixUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Pedido;
 import br.com.grupo27.techchallenge02.external.infrastructure.repositories.PedidoGatewayImpl;
 
@@ -25,15 +27,18 @@ public class PedidoUseCaseImplTest {
 
     private PedidoGatewayImpl pedidoAdapter;
     private PedidoMapper pedidoMapper;
-    private PagamentosClient pagamentosClient;
+    private PixUseCase pagamentosClient;
     private PedidoUseCase pedidoUseCase;
+    private ClienteGateway clienteGateway;
+    private PagamentoUsecase pagamentoUsecase;
 
     @BeforeEach
     void setUp() {
         pedidoAdapter = mock(PedidoGatewayImpl.class);
         pedidoMapper = mock(PedidoMapper.class);
-        pagamentosClient = mock(PagamentosClient.class);
-        pedidoUseCase = new PedidoUseCaseImpl(pedidoAdapter, pedidoMapper, pagamentosClient);
+        clienteGateway = mock(ClienteGateway.class);
+        pagamentoUsecase = mock(PagamentoUsecase.class);
+        pedidoUseCase = new PedidoUseCaseImpl(pedidoAdapter, pedidoMapper, clienteGateway, pagamentoUsecase);
     }
 
     @Test
