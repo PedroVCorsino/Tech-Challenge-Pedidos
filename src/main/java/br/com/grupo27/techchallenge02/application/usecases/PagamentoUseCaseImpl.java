@@ -46,9 +46,9 @@ public class PagamentoUseCaseImpl implements PagamentoUsecase {
             throw new RuntimeException("Pedido não encontrado");
         }
     
-        if (pedidoDto.pago()) {
-            return true; 
-        }
+        // if (pedidoDto.pago()) {
+        //     return true; 
+        // }
     
         boolean isPago = consultaStatusPagamento(pedidoDto.id());
     
@@ -82,10 +82,10 @@ public class PagamentoUseCaseImpl implements PagamentoUsecase {
     }
 
     @Override
-    public void gerarCobranca(Pedido pedido, Cliente cliente) {
+    public void gerarCobranca(PedidoDTO pedido, Cliente cliente) {
         HashMap<String, String> cobrancaData = pix.gerarCobranca(pedido, cliente);
         String idCobranca = cobrancaData.get("idCobranca");
-        String idTx = cobrancaData.get("idTx");
+        String idTx = cobrancaData.get("txid");
     
         if (idCobranca == null || idTx == null) {
             throw new RuntimeException("Falha ao gerar a cobrança. Dados de cobrança ausentes.");
@@ -95,7 +95,7 @@ public class PagamentoUseCaseImpl implements PagamentoUsecase {
             null,
             idCobranca,
             idTx,
-            pedido.getId()
+            pedido.id()
         );
 
         pagamentoGateway.savePagamento(pagamentoMapper.dtoToDomain(pagamentoDTO));

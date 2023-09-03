@@ -2,6 +2,7 @@ package br.com.grupo27.techchallenge02.application.usecases.pix;
 
 import br.com.efi.efisdk.EfiPay;
 import br.com.efi.efisdk.exceptions.EfiPayException;
+import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge02.application.usecases.pix.utils.PixUtils;
 import br.com.grupo27.techchallenge02.domain.interfaces.usecase.pix.PixGeraCobrancaUseCase;
 import br.com.grupo27.techchallenge02.domain.model.Cliente;
@@ -25,16 +26,17 @@ public class PixGeraCobrancaUseCaseImpl implements PixGeraCobrancaUseCase{
     }
 
     @Override
-    public HashMap<String, String> registraCobranca(Pedido pedido, Cliente cliente){
+    public HashMap<String, String> registraCobranca(PedidoDTO pedido, Cliente cliente){
         JSONObject response = gerarCobranca(pedido, cliente);
-        String id = extrairIdsDoResponse(response, "idCobranca");
-        String idtx = extrairIdsDoResponse(response, "idtx");
+        String id = extrairIdDoResponse(response, "id");
+        String txid = extrairTxIdDoResponse(response, "txid");
         HashMap<String, String> ids =  new HashMap<>();
-        ids.put(id, idtx);
+        ids.put("idCobranca", id);
+        ids.put("txid", txid);
         return ids;
     }
 
-    private JSONObject gerarCobranca(Pedido pedido, Cliente cliente) {
+    private JSONObject gerarCobranca(PedidoDTO pedido, Cliente cliente) {
         JSONObject options = configurarOpcoes();
         JSONObject body = construirCorpoCobranca(pedido, cliente);
 
@@ -53,9 +55,18 @@ public class PixGeraCobrancaUseCaseImpl implements PixGeraCobrancaUseCase{
         }
     }
 
-    private String extrairIdsDoResponse(JSONObject response, String key) {
+    private String extrairTxIdDoResponse(JSONObject response, String key) {
         if (response != null && response.has(key)) {
             return response.getString(key);
+        } else {
+            logger.error("O JSON de resposta não contém a chave '{}' ou é nulo.", key);
+            return null;
+        }
+    }
+
+    private String extrairIdDoResponse(JSONObject response, String key) {
+        if (response != null && response.has("loc") && response.getJSONObject("loc").has(key)) {
+            return String.valueOf(response.getJSONObject("loc").getLong(key));
         } else {
             logger.error("O JSON de resposta não contém a chave '{}' ou é nulo.", key);
             return null;
@@ -66,7 +77,7 @@ public class PixGeraCobrancaUseCaseImpl implements PixGeraCobrancaUseCase{
         return PixUtils.configurarOpcoes(credentials);
     }
 
-    private JSONObject construirCorpoCobranca(Pedido pedido, Cliente cliente) {
-        return PixUtils.construirCorpoCobranca(pedido.getId(), cliente.getCpf().toString(), cliente.getNome());
+    private JSONObject construirCorpoCobranca(PedidoDTO pedido, Cliente cliente) {
+        return PixUtils.construirCorpoCobranca(pedido.id(), cliente.getCpf().toString(), cliente.getNome());
     }
 }

@@ -53,8 +53,9 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         Cliente cliente = clienteGateway.findById(pedidoDTO.idCliente());
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
         Pedido createdPedido = pedidoGateway.createPedido(pedido);
-        pagamento.gerarCobranca(pedido, cliente);
-        return pedidoMapper.domainToDto(createdPedido);
+        PedidoDTO pedidoSalvo = pedidoMapper.domainToDto(createdPedido);
+        pagamento.gerarCobranca(pedidoSalvo, cliente);
+        return pedidoSalvo;
     }
 
     @Override

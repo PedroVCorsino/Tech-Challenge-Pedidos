@@ -25,8 +25,12 @@ public class PixConsultaPagamentoUseCaseImpl implements PixConsultaCobrancaUseCa
 
     @Override
     public boolean consultarCobranca(String idtx){
-        detalhaCobrancaPix(idtx);
-        return true;
+        String status = extrairStatus(detalhaCobrancaPix(idtx));
+        logger.info("Efi - Status pagamento:{}.", status);
+        if (status != null) {
+            return status.equals("CONCLUIDA");
+        }
+        return false;
     }
 
     private Map<String, Object> detalhaCobrancaPix(String idtx) {
@@ -45,6 +49,15 @@ public class PixConsultaPagamentoUseCaseImpl implements PixConsultaCobrancaUseCa
         } catch (Exception e) {
             logger.error("Erro desconhecido ao consultar cobrança PIX: {}", e.getMessage());
             return Collections.emptyMap(); 
+        }
+    }
+
+    private String extrairStatus(Map<String, Object> detalhesCobranca) {
+        if (detalhesCobranca != null && detalhesCobranca.containsKey("status")) {
+            return (String) detalhesCobranca.get("status");
+        } else {
+            logger.error("Os detalhes da cobrança PIX não contêm o campo 'status' ou são nulos.");
+            return null;
         }
     }
     

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
+import br.com.grupo27.techchallenge02.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge02.domain.interfaces.usecase.pix.PixConsultaCobrancaUseCase;
 import br.com.grupo27.techchallenge02.domain.interfaces.usecase.pix.PixGeraCobrancaUseCase;
 import br.com.grupo27.techchallenge02.domain.interfaces.usecase.pix.PixGeraQRCodeUseCase;
@@ -27,7 +28,7 @@ public class PixUseCaseImpl implements PixUseCase {
     }
 
     @Override
-    public HashMap<String, String> gerarCobranca(Pedido pedido, Cliente cliente){
+    public HashMap<String, String> gerarCobranca(PedidoDTO pedido, Cliente cliente){
 
         return pixCobranca.registraCobranca(pedido, cliente);
     }
