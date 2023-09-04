@@ -122,7 +122,7 @@ http://localhost:30001/swagger-ui/index.html#/
 - se trocar `POST` por `PUT` é possivel realizar alteraçoes no pedido, incluindo o status do mesmo.
 - Para testar 
     - swagger-ui/index.html#/pedido-api/updatePedido
-    - Ou um `PUT` para `/api/pedido{id}`
+    - Ou um `PUT` para `/api/pedido/{id}`
     - passe como parametro o iddo pedido que deseja atualizar.
     - Envie o json com as alterções no corpo.
 ```
