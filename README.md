@@ -3,13 +3,17 @@
 Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso de Software Architecture da FIAP Pós Tech.
 
 ## Versão
-1.0.0
+2.2
 
 ## Índice
-<a href="#tecnologias">Tecnologias</a> •
-<a href="#mudanças-em-relação-à-versão-anterior">Mudanças em relação à versão anterior</a> •
-<a href="#como-rodar-a-aplicação">Como rodar a aplicação</a> •
-<a href="criterios-de-aceite">Criterios de aceite</a> •
+<a href="#tecnologias">Tecnologias</a> 
+
+<a href="#mudanças-em-relação-à-versão-anterior">Mudanças em relação à versão anterior</a> 
+
+<a href="#como-rodar-a-aplicação">Como rodar a aplicação</a> 
+
+<a href="criterios-de-aceite">Criterios de aceite</a> 
+
 <a href="#autores">Autores</a>
 
 ## Tecnologias
