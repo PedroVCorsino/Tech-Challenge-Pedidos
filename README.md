@@ -25,7 +25,7 @@ Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso d
 
 ## Mudanças em relação à versão anterior
 
-A versão da fase01 pode ser encontrada aqui
+A versão da fase01 pode ser encontrada [aqui](https://github.com/PedroVCorsino/Tech-Challenge01/ "Go to fase01").
 
 Trocamos a Arquitetura Hexagonal por Arquitetura limpa, essas mudanças podem ser melhor observadas na alteração de estrutura dos pacotes e diretórios.
 
@@ -48,7 +48,7 @@ $ git clone https://github.com/PedroVCorsino/Tech-Challenge2.git
 ```
 - Abra o projeto na IDE de sua preferência
 
-- Abra o diretório: deploy-kubernetes
+- Abra o diretório: [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge02/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
 
 - Utilizamos o kubernetes rodando via docker desktop
 
@@ -61,6 +61,9 @@ $ kubectl apply -f app-deployment.yaml
 ```
 
 ## Crieterios de aceite
+
+### Kubernets
+- Todos os arquivos para deploy podem ser encontrados no diretorio [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge02/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
 
 ### Api 
  - Após subir a aplicação recomendo usar o Swagger para testar os endpoints
