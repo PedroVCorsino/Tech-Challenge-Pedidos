@@ -7,8 +7,8 @@ Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso d
 
 ## Índice
 <a href="#tecnologias">Tecnologias</a> •
-<a href="#requisitos-minimos">Requisitos minimos</a> •
-<a href="#como-rodar">Como rodar</a> •
+<a href="#mudanças-em-relação-à-versão-anterior">Mudanças em relação à versão anterior</a> •
+<a href="#como-rodar-a-aplicação">Como rodar a aplicação</a> •
 <a href="criterios-de-aceite">Criterios de aceite</a> •
 <a href="#autores">Autores</a>
 
@@ -55,123 +55,146 @@ $ kubectl apply -f secrets.yaml
 $ kubectl apply -f postgress-deployment.yaml
 $ kubectl apply -f app-deployment.yaml
 ```
-- Acessar a aplicação atráves da URL:
-
-http://localhost:30001/swagger-ui/index.html#/
-
 
 ## Crieterios de aceite
 
-
- ### Api 
+### Api 
  - Após subir a aplicação recomendo usar o Swagger para testar os endpoints
-     - http://localhost:8080/swagger-ui/index.html
-       
-### Cliente `/api/cliente`
-- Cadastro de cliente
-    - http://localhost:8080/swagger-ui/index.html#/cliente-controller/createCliente
-    - Ou um `POST` para `/api/cliente` com o json:
-  ```
+http://localhost:30001/swagger-ui/index.html#/
+
+### Checkout do Pedido e alteraçoes no status
+- Ao cadastrar um novo pedido a api retorna um um json com o pedido criado nele é possivel encontrar o ID do pedido para identifica-lo.
+  
+![Captura de tela de 2023-09-03 21-15-46](https://github.com/PedroVCorsino/Tech-Challenge02/assets/61948860/f9f7ea20-be18-4e28-850f-481fd9573b01)
+- Para testar 
+    - swagger-ui/index.html#/pedido-api/createPedido
+    - Ou um `POST` para `/api/pedido`
+```
+{
+  "idCliente": 1,
+  "combos": [
     {
-      "cpf": "86342853088",
-      "nome": "José",
-      "email": "joao@example.com"
+      "id": 0,
+      "lanche": {
+        "id": 1,
+        "nome": "Hambúrguer",
+        "descricao": "Delicioso hambúrguer artesanal",
+        "preco": 10.99,
+        "categoria": "LANCHE"
+      },
+      "acompanhamento": {
+        "id": 1,
+        "nome": "Batata Frita",
+        "descricao": "Porção de batatas fritas crocantes",
+        "preco": 5.99,
+        "categoria": "ACOMPANHAMENTO"
+      },
+      "bebida": {
+        "id": 1,
+        "nome": "Refrigerante",
+        "descricao": "Bebida gaseificada sabor cola",
+        "preco": 4.99,
+        "categoria": "BEBIDA"
+      },
+      "sobremesa": {
+        "id": 5,
+        "nome": "Torta de Limão",
+        "descricao": "Torta doce com recheio de limão",
+        "preco": 6.99,
+        "categoria": "SOBREMESA"
+      },
+      "quantidade": 1,
+      "valorUnitario": 28.96,
+      "valorTotal": 28.96
     }
+  ],
+  "valorTotal": 28.96,
+  "status": "PENDENTE",
+  "pago": false,
+  "dataCadastro": "",
+  "dataAlteracao": ""
+```
+ 
+- se trocar `POST` por `PUT` é possivel realizar alteraçoes no pedido, incluindo o status do mesmo.
+- Para testar 
+    - swagger-ui/index.html#/pedido-api/updatePedido
+    - Ou um `PUT` para `/api/pedido{id}`
+    - passe como parametro o iddo pedido que deseja atualizar.
+    - Envie o json com as alterções no corpo.
+```
+{
+  {
+  "id": 1,
+  "idCliente": 1,
+  "combos": [
+    {
+      "id": 1,
+      "lanche": {
+        "id": 1,
+        "nome": "Hambúrguer",
+        "descricao": "Delicioso hambúrguer artesanal",
+        "preco": 10.99,
+        "categoria": "LANCHE"
+      },
+      "acompanhamento": {
+        "id": 6,
+        "nome": "Batata Frita",
+        "descricao": "Porção de batatas fritas crocantes",
+        "preco": 5.99,
+        "categoria": "ACOMPANHAMENTO"
+      },
+      "bebida": {
+        "id": 11,
+        "nome": "Refrigerante",
+        "descricao": "Produto gaseificada sabor cola",
+        "preco": 4.99,
+        "categoria": "BEBIDA"
+      },
+      "sobremesa": {
+        "id": 16,
+        "nome": "Bolo de Chocolate",
+        "descricao": "Delicioso bolo de chocolate",
+        "preco": 7.99,
+        "categoria": "SOBREMESA"
+      },
+      "quantidade": 1,
+      "valorUnitario": 23.98,
+      "valorTotal": 23.98
+    }
+  ],
+  "valorTotal": 23.98,
+  "status": "PENDENTE",
+  "pago": true,
+  "dataCadastro": "2023-09-01T13:00:00.000+00:00",
+  "dataAlteracao": null
+}
+```
+### Consultar status de pagamento do pedido, e integrações com instituiçoes de pagamento.
 
-- Identificação do Cliente via CPF
-    - http://localhost:8080/swagger-ui/index.html#/cliente-controller/getClienteByCpf
-    - Ou `GET` para `/api/cliente/cpf/{cpf}`
+Não conseguimos relizar a integração com mercado pago em tempo para a entrega devido a dificudades para compreender sua documentação. 
+Como alternativa optamos por criar uma integração com Efí Bank porem o resultado ficou instavel e nem sempre os webhooks respondem de maneira correta.
 
-### Produto `/api/produtos/`
-- Cada categoria de produto possui seu proprio endpoint
+#### Para consulta de status de pagamento 
+- Use swagger-ui/index.html#/api/pagamento/verifica-pagamento/{id}
+- Ou `GET` para `/api/pagamento/verifica-pagamento/`
+- Envie o id do pedido que deseja consultar o status de pagamento como parâmetro.
 
-- ex: com lanche
-    - http://localhost:8080/swagger-ui/index.html#/lanche-controller/createLanche
-    - ou `POST` para `/api/produtos/lanche` com o json:
-      ```
-      {
-        "nome": "Hambúrguer de siri",
-        "descricao": "Receita secreta",
-        "preco": 10.99
-      }
-- Para editar o produto, digamos que queremos aumentar o preço.
-    - http://localhost:8080/swagger-ui/index.html#/lanche-controller/updateLanche
-    - ou `PUT` `api/produtos/lanche/{id}' com json:
-    ```
-      {
-        "nome": "Hambúrguer de siri",
-        "descricao": "Receita secreta",
-        "preco": 15.99
-      }
-- Para remover
-    -  http://localhost:8080/swagger-ui/index.html#/lanche-controller/deleteLanche
-    -  ou `delete` para `/api/produtos/lanche/id`
-  - Lembrando que não é possivel deletar produtos que ja estão vinculados a algum pedido.
+#### Para gerar o codigo QRCode(Copie e cole)
+- Use /swagger-ui/index.html#/pagamento-api/geraQrCodePedido
+- Ou `GET` para `/api/pagamento/gera-qrcode{id}`
+- Envie o id do pedido que deseja gerar pagamento.
 
-  - Buscar por categoria
-      - http://localhost:8080/swagger-ui/index.html#/produtos-controller/getProdutosByTipo
-      - Ou `GET` para `/api/produtos/tipo/{tipo}`
-   
-### Pedido `/api/pedido`
-- Para cadastrar um novo pedido
-    - http://localhost:8080/swagger-ui/index.html#/pedido-controller/createPedido
-    - Ou um `POST` para `/api/pedido` com o seguinte json:
-      ```
-        {
-            "id": 0,
-            "idCliente": 1,
-            "combos": [
-                {
-                    "id": 0,
-                    "lanche": {
-                        "id": 1,
-                        "nome": "Hambúrguer",
-                        "descricao": "Delicioso hambúrguer artesanal",
-                        "preco": 10.99
-                    },
-                    "acompanhamento": {
-                        "id": 1,
-                        "nome": "Batata Frita",
-                        "descricao": "Porção de batatas fritas crocantes",
-                        "preco": 5.99
-                    },
-                    "bebida": {
-                        "id": 1,
-                        "nome": "Refrigerante",
-                        "descricao": "Bebida gaseificada sabor cola",
-                        "preco": 4.99
-                    },
-                    "sobremesa": {
-                        "id": 5,
-                        "nome": "Torta de Limão",
-                        "descricao": "Torta doce com recheio de limão",
-                        "preco": 6.99
-                    },
-                    "quantidade": 1,
-                    "valorUnitario": 28.96,
-                    "valorTotal": 28.96
-                }
-            ],
-            "valorTotal": 28.96,
-            "status": "PENDENTE",
-            "pago": false
-      }
-#### Para verificar o pagamento dos pedidos
-- Recomendo começar verificando quais pedidos estao com status-pagamento = false
-    - http://localhost:8080/swagger-ui/index.html#/pedido-controller/getPedidosByStatusPagamento
-    - ou `GET` para `/api/pedido/status-pagamento?pago=false`
-- Selecionar o id de algum pedido e enviar para
-    - http://localhost:8080/swagger-ui/index.html#/pedido-controller/verificaPagamento
-    - ou `GET` para `/api/pedido/verifica-pagamento/{id}`
-- Aqui a aplicação ira verificar se o pedido realmente consta como não pago no banco, e se for o caso ira fazer uma consulta para uma api de paramentos externa. O retorno sera true caso o pedido esteja pago, e o mesmo tera seu status-pagamento atualizado.
+#### Para listar pedidos pagos
+- Use swagger-ui/index.html#/pagamento-api/getPedidosByStatusPagamento passando `true` para lista pedidos pagos e `false` para pedidos pendentes.
+- Ou um `GET` para `/api/pagamento/status-pagamento?pago=false` retorna pedidos pendentes.
+- Ou um `GET` para `/api/pagamento/status-pagamento?pago=true` retorna pedidos pagos.
 
-- Listar pedidos
-    - http://localhost:8080/swagger-ui/index.html#/pedido-controller/getAllPedidos
-    - ou `GET` para `/api/pedido/all`
+#### Listagem de pedidos ativos
+- Use /swagger-ui/index.html#/pedido-api/getPedidosAtivos
+- Ou um `GET` para `/api/pedido/ativos`
+- O retorno sera um json com lista de pedidos ordenados por recebimento e por status com a seguinte prioridade: Pronto > Em Preparação > Recebido
+- Pedidos com status Finalizado não aparecem na lista.
 
-- Se preferir pode listar pelo status de andamento do pedido
-    -  http://localhost:8080/swagger-ui/index.html#/pedido-controller/getPedidosByStatus
-    -  ou `GET` para `/api/pedido/status/{status}`
 
 ## Documentação do sistema (DDD) utilizando a linguagem ubíqua.
 
