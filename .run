@@ -1,9 +1,0 @@
-#!/bin/zsh
-export POSTGRES_DB="postgres"
-export POSTGRES_USER="postgres"
-export POSTGRES_PASSWORD="mudar123"
-export POSTGRES_HOST="localhost"
-export HOSTNAME="localhost"
-export PORT="8080"
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000"
-
