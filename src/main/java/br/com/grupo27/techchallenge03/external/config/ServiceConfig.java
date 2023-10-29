@@ -2,7 +2,6 @@ package br.com.grupo27.techchallenge03.external.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import br.com.grupo27.techchallenge03.adapters.gateways.ClienteGateway;
 import br.com.grupo27.techchallenge03.adapters.gateways.PagamentoGateway;
