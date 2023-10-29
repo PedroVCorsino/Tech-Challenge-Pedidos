@@ -21,15 +21,10 @@ public class AuthServiceImpl implements AuthService {
     
     @Override
     public ResponseEntity<String> authenticate(UserDTO userDTO) {
-        
-        // Configura o HttpHeaders para definir o tipo de conteúdo como application/json
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        
-        // Envolva o DTO em uma HttpEntity junto com os cabeçalhos
         HttpEntity<UserDTO> requestEntity = new HttpEntity<>(userDTO, headers);
         
-        // Faça a solicitação POST usando o RestTemplate com a HttpEntity criada
         ResponseEntity<String> response = restTemplate.postForEntity(BASE_URL + "/auth", requestEntity, String.class);
         return response;
     }
