@@ -30,11 +30,11 @@ A versão da fase01 pode ser encontrada [aqui](https://github.com/PedroVCorsino/
 
 Trocamos a Arquitetura Hexagonal por Arquitetura limpa, essas mudanças podem ser melhor observadas na alteração de estrutura dos pacotes e diretórios.
 
-![Captura de tela de 2023-09-03 21-02-07](https://github.com/PedroVCorsino/Tech-Challenge02/assets/61948860/78c6ac29-c619-4f23-8551-c2f049a79557)
+![Captura de tela de 2023-09-03 21-02-07](https://github.com/PedroVCorsino/Tech-Challenge03/assets/61948860/78c6ac29-c619-4f23-8551-c2f049a79557)
 
 Cada pacote serve para separar e agrupar as classes da aplicação de acordo com as divisão de camadas proposta na arquitetura limpa.
 
-![Captura de tela de 2023-09-03 21-03-54](https://github.com/PedroVCorsino/Tech-Challenge02/assets/61948860/a5a03735-1300-47a4-a07c-942ee30d5480)
+![Captura de tela de 2023-09-03 21-03-54](https://github.com/PedroVCorsino/Tech-Challenge03/assets/61948860/a5a03735-1300-47a4-a07c-942ee30d5480)
 
 
 - Enterprise Business Rules  no pacote Domain
@@ -49,7 +49,7 @@ $ git clone https://github.com/PedroVCorsino/Tech-Challenge2.git
 ```
 - Abra o projeto na IDE de sua preferência
 
-- Abra o diretório: [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge02/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
+- Abra o diretório: [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge03/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
 
 - Utilizamos o kubernetes rodando via docker desktop
 
@@ -64,7 +64,7 @@ $ kubectl apply -f app-deployment.yaml
 ## Crieterios de aceite
 
 ### Kubernets
-- Todos os arquivos para deploy podem ser encontrados no diretorio [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge02/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
+- Todos os arquivos para deploy podem ser encontrados no diretorio [deploy-kubernetes](https://github.com/PedroVCorsino/Tech-Challenge03/tree/main/deploy-kubernetes "Go to deploy-kubernetes")
 
 ### Api 
  - Após subir a aplicação recomendo usar o Swagger para testar os endpoints
@@ -73,7 +73,7 @@ http://localhost:30001/swagger-ui/index.html#/
 ### Checkout do Pedido e alteraçoes no status
 - Ao cadastrar um novo pedido a api retorna um um json com o pedido criado nele é possivel encontrar o ID do pedido para identifica-lo.
   
-![Captura de tela de 2023-09-03 21-15-46](https://github.com/PedroVCorsino/Tech-Challenge02/assets/61948860/f9f7ea20-be18-4e28-850f-481fd9573b01)
+![Captura de tela de 2023-09-03 21-15-46](https://github.com/PedroVCorsino/Tech-Challenge03/assets/61948860/f9f7ea20-be18-4e28-850f-481fd9573b01)
 - Para testar 
     - swagger-ui/index.html#/pedido-api/createPedido
     - Ou um `POST` para `/api/pedido`
