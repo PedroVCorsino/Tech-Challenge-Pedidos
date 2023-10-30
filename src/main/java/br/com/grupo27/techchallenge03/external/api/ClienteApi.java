@@ -1,5 +1,6 @@
 package br.com.grupo27.techchallenge03.external.api;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

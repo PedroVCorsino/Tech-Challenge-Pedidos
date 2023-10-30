@@ -1,5 +1,7 @@
 package br.com.grupo27.techchallenge03.external.config;
 
+import java.net.MalformedURLException;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,6 +28,8 @@ import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixGeraQRCod
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixUseCase;
 import br.com.grupo27.techchallenge03.external.infrastructure.repositories.PedidoGatewayImpl;
 import br.com.grupo27.techchallenge03.external.infrastructure.repositories.JPA.PedidoJPA;
+// import br.com.grupo27.techchallenge03.external.security.JwtTokenFilter;
+import br.com.grupo27.techchallenge03.external.security.JwtTokenFilter;
 
 @Configuration
 public class ServiceConfig {
@@ -68,6 +72,16 @@ public class ServiceConfig {
     @Bean
     public PixGeraCobrancaUseCaseImpl pixGeraCobrancaUseCase(Credenciais credentials){
         return new PixGeraCobrancaUseCaseImpl(credentials);
+    }
+
+    @Bean
+    public JwtTokenFilter jwtTokenFilter() {
+        try {
+            return new JwtTokenFilter();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
