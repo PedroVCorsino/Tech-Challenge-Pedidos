@@ -28,7 +28,6 @@ import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixGeraQRCod
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixUseCase;
 import br.com.grupo27.techchallenge03.external.infrastructure.repositories.PedidoGatewayImpl;
 import br.com.grupo27.techchallenge03.external.infrastructure.repositories.JPA.PedidoJPA;
-// import br.com.grupo27.techchallenge03.external.security.JwtTokenFilter;
 import br.com.grupo27.techchallenge03.external.security.JwtTokenFilter;
 
 @Configuration

@@ -3,8 +3,8 @@ spring:
     url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  # autoconfigure:
+  #   exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

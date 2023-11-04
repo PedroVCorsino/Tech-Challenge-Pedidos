@@ -129,6 +129,29 @@
 			<artifactId>jjwt-api</artifactId>
 			<version>0.11.2</version>
 		</dependency>
+			<!-- JJWT API dependency -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>0.11.2</version>
+			</dependency>
+		
+			<!-- JJWT Implementation dependency -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>0.11.2</version>
+				<scope>runtime</scope>
+			</dependency>
+		
+			<!-- JJWT Jackson serializer/deserializer dependency -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>0.11.2</version>
+				<scope>runtime</scope>
+			</dependency>
+		
 
 	</dependencies>
 
