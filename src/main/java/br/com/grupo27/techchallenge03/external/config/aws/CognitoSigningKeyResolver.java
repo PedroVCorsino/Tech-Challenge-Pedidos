@@ -1,4 +1,4 @@
-package br.com.grupo27.techchallenge03.external.security;
+package br.com.grupo27.techchallenge03.external.config.aws;
 
 import com.auth0.jwk.Jwk;
 import com.auth0.jwk.JwkException;

@@ -2,6 +2,8 @@ package br.com.grupo27.techchallenge03.external.security;
 
 import com.auth0.jwk.JwkProvider;
 import com.auth0.jwk.JwkProviderBuilder;
+
+import br.com.grupo27.techchallenge03.external.config.aws.CognitoSigningKeyResolver;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

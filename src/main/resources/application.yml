@@ -1,10 +1,8 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-  # autoconfigure:
-  #   exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  # datasource:
+  #   url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
+  #   username: ${POSTGRES_USER}
+  #   password: ${POSTGRES_PASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -19,15 +17,3 @@ spring:
     level:
       org.springframework.security: DEBUG
       org.springframework.web.client: DEBUG
-
-    
-
-
-# logging:
-#   level:
-#     ROOT: TRACE
-#     org:
-#       hibernate:
-#         type:
-#           descriptor:
-#             sql: trace
