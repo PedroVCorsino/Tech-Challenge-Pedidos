@@ -21,7 +21,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build Docker Image
-        run: docker build -t pedrovcorsino/tech_challenge:"$1" .
+        run: docker build -t pedrovcorsino/tech_challenge:latest .
 
       - name: Publish Image to Docker Hub
         run: docker push pedrovcorsino/tech_challenge:latest
