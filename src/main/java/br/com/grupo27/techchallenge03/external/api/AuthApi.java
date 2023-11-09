@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.grupo27.techchallenge03.adapters.controllers.AuthController;
 import br.com.grupo27.techchallenge03.application.dto.UserDTO;
+import io.swagger.v3.oas.annotations.Operation;
 
 
 @RestController
@@ -19,6 +20,7 @@ public class AuthApi {
         this.authController = authController;
     }
 
+    @Operation(security = {})
     @PostMapping
     public ResponseEntity<String>  authenticate(@RequestBody UserDTO userDTO) {
         return authController.authenticate(userDTO);
