@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import br.com.grupo27.techchallenge03.application.usecases.PagamentoUseCaseImpl;
 import br.com.grupo27.techchallenge03.external.config.aws.SecretsManagerService;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
