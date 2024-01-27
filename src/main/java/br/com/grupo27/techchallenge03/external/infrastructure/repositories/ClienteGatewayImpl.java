@@ -28,7 +28,6 @@ public class ClienteGatewayImpl implements ClienteGateway {
             return clienteEntity.toCliente();
         } catch (Exception e) {
             e.printStackTrace();
-            // Lidar com o caso em que a entidade não foi salva corretamente
             throw new RuntimeException("Falha ao salvar o cliente no banco de dados.");
         }
     }

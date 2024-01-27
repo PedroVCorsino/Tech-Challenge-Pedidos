@@ -14,7 +14,6 @@ public class SecretsManagerService {
     public String getSecretValue(String secretName) {
         Region region = Region.of("us-east-1");
 
-        // Criar um cliente do AWS Secrets Manager com um provedor de credenciais explicitamente definido
         try (SecretsManagerClient client = SecretsManagerClient.builder()
                                                                .region(region)
                                                                .credentialsProvider(DefaultCredentialsProvider.create())
