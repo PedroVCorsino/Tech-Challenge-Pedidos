@@ -24,7 +24,6 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
             ValidadorCPF cpf = new ValidadorCPF(cpfString);
             Cliente clienteExistente = clienteRepository.findByCpf(cpf);
             if (clienteExistente != null) {
-                // O CPF já existe, você pode lançar uma exceção, retornar um erro ou lidar de acordo com a lógica do seu aplicativo
                 throw new IllegalArgumentException("O CPF já está cadastrado.");
             }
         }
@@ -41,7 +40,6 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
             ValidadorCPF cpf = new ValidadorCPF(cpfString);
             Cliente clienteExistente = clienteRepository.findByCpf(cpf);
             if (clienteExistente != null && !clienteExistente.getId().equals(id)) {
-                // O CPF já existe para outro cliente, você pode lançar uma exceção, retornar um erro ou lidar de acordo com a lógica do seu aplicativo
                 throw new IllegalArgumentException("O CPF já está cadastrado para outro cliente.");
             }
         }

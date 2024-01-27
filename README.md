@@ -1,13 +1,9 @@
 # Tech-Challenge
 
-Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso de Software Architecture da FIAP Pós Tech.
+Desafio desenvolvido com Kubernets e Clean-Architecture para a fase04 do curso de Software Architecture da FIAP Pós Tech.
 
 ## Versão
 2.2 [Dockerhub](https://hub.docker.com/repository/docker/pedrovcorsino/tech_challenge/tags "Go to Dockerhub")
-
-## Índice
-<a href="#tecnologias">Tecnologias</a> 
-<a href="#autores">Autores</a>
 
 ## Tecnologias
 <div style="display: inline_block"><br>
@@ -17,11 +13,28 @@ Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso d
     <img align="center" alt="kubernets" height="50" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain-wordmark.svg">  
 </div>
 
-## Banco de dados
+## Escolha das tecnologias
+### Linguagem
+- Java
+    - Java escolha estratégica para aplicações que demandam escalabilidade, robustez e alta performance. Java é uma linguagem robusta e eficiente, ideal para lidar com o crescimento e a complexidade de aplicações empresariais. Sua capacidade de gerenciar cargas pesadas e variadas de trabalho assegura uma base sólida para o backend.
+
+### Framework
+- SpringBoot
+  - O Spring Boot, por sua vez, agiliza o desenvolvimento em Java, proporcionando uma plataforma coesa e flexível. Sua facilidade de uso e a vasta gama de funcionalidades integradas permitem um desenvolvimento ágil e eficiente, crucial para aplicações que precisam evoluir rapidamente.
+
+### Repositorio de dados
+- Postgres
+    - O PostgreSQL é um banco de dados SQL de alto desempenho, conhecido pela sua capacidade de lidar com grandes volumes de dados e transações complexas com eficiência. Ele oferece escalabilidade e robustez, garantindo que as operações de dados sejam não apenas rápidas, mas também seguras e confiáveis.
+
+Juntas, estas tecnologias formam um trio poderoso para desenvolver aplicações que não apenas atendem às demandas atuais, mas também estão preparadas para crescer e se adaptar às necessidades futuras, mantendo uma performance excepcional.
+
 
 
 
 ## Documentação do sistema (DDD) utilizando a linguagem ubíqua.
+### Contextos delimitados
+- Pedido (Realização do pedido e pagamento) 
+  ![image](https://github.com/PedroVCorsino/Tech-Challenge/assets/61948860/0c627219-8fb8-4bdc-b88a-3d0db6087973)
 
 ### Domínios
 - Subdomínio Principal:
@@ -32,15 +45,6 @@ Desafio desenvolvido com Kubernets e Clean-Architecture para a fase02 do curso d
     - Gestão de estoque,
     - funcionários, clientes,
     - estratégias de marketing
-
-
-### Contextos delimitados
-
-- Pedido (Realização do pedido e pagamento) 
-  ![image](https://github.com/PedroVCorsino/Tech-Challenge/assets/61948860/0c627219-8fb8-4bdc-b88a-3d0db6087973)
-
-- Cozinha (Preparação e entrega do pedido)
-  ![image](https://github.com/PedroVCorsino/Tech-Challenge/assets/61948860/823b0576-5524-4397-9411-6805505dfb85)
 
 ### Dicionário de linguagem ubíqua
 - Identificação: Pode se identificar usando CPF, nome, e-mail ou não se identificar.

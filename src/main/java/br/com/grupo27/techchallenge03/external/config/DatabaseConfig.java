@@ -42,10 +42,10 @@ public class DatabaseConfig {
 
         // Aqui, você retornamos o DataSource construído com o jdbcUrl, username e password
         return DataSourceBuilder.create()
-        .url(jdbcUrl) // Use a variável jdbcUrl que você criou
+        .url(jdbcUrl) 
         .username(username)
         .password(password)
-        .driverClassName("org.postgresql.Driver") // Adicione explicitamente o driver
+        .driverClassName("org.postgresql.Driver")
         .build();
 
     }
