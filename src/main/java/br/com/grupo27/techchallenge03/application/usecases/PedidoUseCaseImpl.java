@@ -10,9 +10,7 @@ import br.com.grupo27.techchallenge03.adapters.gateways.ClienteGateway;
 import br.com.grupo27.techchallenge03.adapters.mappers.PedidoMapper;
 import br.com.grupo27.techchallenge03.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge03.domain.enums.StatusPedido;
-import br.com.grupo27.techchallenge03.domain.interfaces.usecase.PagamentoUsecase;
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.PedidoUseCase;
-import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixUseCase;
 import br.com.grupo27.techchallenge03.domain.model.Cliente;
 import br.com.grupo27.techchallenge03.domain.model.Pedido;
 import br.com.grupo27.techchallenge03.external.infrastructure.repositories.PedidoGatewayImpl;
@@ -22,18 +20,15 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
     private final PedidoGatewayImpl pedidoGateway;
     private final PedidoMapper pedidoMapper;
     private final ClienteGateway clienteGateway;
-    private final PagamentoUsecase pagamento;
     
     private static final Logger logger = LoggerFactory.getLogger(PedidoUseCaseImpl.class);
 
     
 
-    public PedidoUseCaseImpl(PedidoGatewayImpl pedidoGateway, PedidoMapper pedidoMapper, ClienteGateway clienteGateway,
-            PagamentoUsecase pagamento) {
+    public PedidoUseCaseImpl(PedidoGatewayImpl pedidoGateway, PedidoMapper pedidoMapper, ClienteGateway clienteGateway) {
         this.pedidoGateway = pedidoGateway;
         this.pedidoMapper = pedidoMapper;
         this.clienteGateway = clienteGateway;
-        this.pagamento = pagamento;
     }
 
     @Override
@@ -54,7 +49,6 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         Pedido pedido = pedidoMapper.dtoToDomain(pedidoDTO);
         Pedido createdPedido = pedidoGateway.createPedido(pedido);
         PedidoDTO pedidoSalvo = pedidoMapper.domainToDto(createdPedido);
-        pagamento.gerarCobranca(pedidoSalvo, cliente);
         return pedidoSalvo;
     }
 

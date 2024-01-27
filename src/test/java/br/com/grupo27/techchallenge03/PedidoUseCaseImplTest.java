@@ -12,7 +12,6 @@ import br.com.grupo27.techchallenge03.adapters.mappers.PedidoMapper;
 import br.com.grupo27.techchallenge03.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge03.application.usecases.PedidoUseCaseImpl;
 import br.com.grupo27.techchallenge03.domain.enums.StatusPedido;
-import br.com.grupo27.techchallenge03.domain.interfaces.usecase.PagamentoUsecase;
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.PedidoUseCase;
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.pix.PixUseCase;
 import br.com.grupo27.techchallenge03.domain.model.Pedido;
@@ -29,15 +28,13 @@ public class PedidoUseCaseImplTest {
     private PixUseCase pagamentosClient;
     private PedidoUseCase pedidoUseCase;
     private ClienteGateway clienteGateway;
-    private PagamentoUsecase pagamentoUsecase;
 
     @BeforeEach
     void setUp() {
         pedidoAdapter = mock(PedidoGatewayImpl.class);
         pedidoMapper = mock(PedidoMapper.class);
         clienteGateway = mock(ClienteGateway.class);
-        pagamentoUsecase = mock(PagamentoUsecase.class);
-        pedidoUseCase = new PedidoUseCaseImpl(pedidoAdapter, pedidoMapper, clienteGateway, pagamentoUsecase);
+        pedidoUseCase = new PedidoUseCaseImpl(pedidoAdapter, pedidoMapper, clienteGateway);
     }
 
     @Test
