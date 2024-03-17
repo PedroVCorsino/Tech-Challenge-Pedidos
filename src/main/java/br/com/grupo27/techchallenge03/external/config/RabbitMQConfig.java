@@ -13,16 +13,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    // Configuração da fila de pedidos
     @Bean
     Queue pedidoQueue() {
         return new Queue("pedidoQueue", false);
     }
 
-    // Adicionando a configuração da fila de pagamentos
     @Bean
     Queue pagamentoQueue() {
         return new Queue("pagamentoQueue", false);
+    }
+
+    @Bean
+    Queue producaoQueue() {
+        return new Queue("producaoQueue", false);
     }
 
     @Bean
@@ -30,17 +33,29 @@ public class RabbitMQConfig {
         return new TopicExchange("pedidoExchange");
     }
 
-    // Binding para a fila de pedidos
     @Bean
     Binding pedidoBinding(Queue pedidoQueue, TopicExchange exchange) {
         return BindingBuilder.bind(pedidoQueue).to(exchange).with("pedido.#");
     }
 
-    // Adicionando um binding para a fila de pagamentos
-    // Se a fila de pagamentos pode utilizar o mesmo padrão de roteamento ou necessita de um diferente, ajuste o argumento .with() conforme necessário
     @Bean
     Binding pagamentoBinding(Queue pagamentoQueue, TopicExchange exchange) {
         return BindingBuilder.bind(pagamentoQueue).to(exchange).with("pagamento.#");
+    }
+
+    @Bean
+    Binding producaoBinding(Queue producaoQueue, TopicExchange exchange) {
+        return BindingBuilder.bind(producaoQueue).to(exchange).with("producao.#");
+    }
+
+    @Bean
+    Binding pedidoPagoBinding(Queue pedidoPagoQueue, TopicExchange exchange) {
+        return BindingBuilder.bind(pedidoPagoQueue).to(exchange).with("pedidoPago.#");
+    }
+
+    @Bean
+    Queue pedidoPagoQueue() {
+        return new Queue("pedidoPagoQueue", false);
     }
 
     @Bean

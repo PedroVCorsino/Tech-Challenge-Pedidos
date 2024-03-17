@@ -75,4 +75,12 @@ public class PedidoUseCaseImpl implements PedidoUseCase {
         return pedidos.stream().map(pedidoMapper::domainToDto).collect(Collectors.toList());
     }
 
+    @Override
+    public PedidoDTO setStatusPago(Long idPedido) {
+        Pedido pedido = pedidoMapper.dtoToDomain(this.getPedidoById(idPedido));
+        pedido.setPago(true);
+        pedido.setStatus(StatusPedido.RECEBIDO);
+        return this.updatePedido(idPedido,  pedidoMapper.domainToDto(pedido));
+    }
+
 }
