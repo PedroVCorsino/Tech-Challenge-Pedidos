@@ -1,5 +1,6 @@
 package br.com.grupo27.techchallenge03.adapters.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -7,23 +8,30 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.grupo27.techchallenge03.application.dto.PedidoDTO;
 import br.com.grupo27.techchallenge03.domain.enums.StatusPedido;
+import br.com.grupo27.techchallenge03.domain.interfaces.services.rabbitmq.PedidoAsyncService;
 import br.com.grupo27.techchallenge03.domain.interfaces.usecase.PedidoUseCase;
 import br.com.grupo27.techchallenge03.domain.model.Pedido;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PedidoController {
 
     private final PedidoUseCase pedidoUseCase;
 
-    public PedidoController(PedidoUseCase pedidoUseCase) {
+    private final PedidoAsyncService pedidoService;
+
+    public PedidoController(PedidoUseCase pedidoUseCase, PedidoAsyncService pedidoService) {
         this.pedidoUseCase = pedidoUseCase;
+        this.pedidoService = pedidoService;
     }
 
-    public ResponseEntity<PedidoDTO> createPedido(@RequestBody PedidoDTO pedidoDTO) {
-        PedidoDTO createdPedido = pedidoUseCase.createPedido(pedidoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPedido);
+    public ResponseEntity<?> createPedido(@RequestBody PedidoDTO pedidoDTO) {
+        pedidoService.enviarParafilaDePedidos(pedidoDTO);
+        return ResponseEntity
+            .status(HttpStatus.ACCEPTED)
+            .body(Map.of("mensagem", "Pedido enviado com sucesso"));
     }
 
     public ResponseEntity<PedidoDTO> updatePedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO) {

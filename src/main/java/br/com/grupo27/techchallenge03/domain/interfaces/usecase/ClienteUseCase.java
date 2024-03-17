@@ -18,5 +18,7 @@ public interface ClienteUseCase {
     boolean deleteCliente(Long id);
 
     ClienteDTO getClienteByCPF(String cpf);
+
+    boolean solicitarRemocaoDeDados(String cpf);
     
 }

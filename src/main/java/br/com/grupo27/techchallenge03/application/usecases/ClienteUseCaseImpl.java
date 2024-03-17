@@ -84,4 +84,15 @@ public class ClienteUseCaseImpl implements ClienteUseCase {
         }
     }
 
+    @Override
+    public boolean solicitarRemocaoDeDados(String cpf) {
+        try {
+            ClienteDTO clienteDTO = this.getClienteByCPF(cpf);
+            this.deleteCliente(clienteDTO.id());
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

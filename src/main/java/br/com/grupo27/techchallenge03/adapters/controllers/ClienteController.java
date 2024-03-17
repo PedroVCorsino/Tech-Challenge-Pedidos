@@ -83,6 +83,17 @@ public class ClienteController {
         }
     }
 
-
+    public ResponseEntity<Void> solicitarRemocaoDeDados(@PathVariable String cpf) {
+        try {
+            boolean deleted = clienteUseCase.solicitarRemocaoDeDados(cpf);
+            if (deleted) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 }

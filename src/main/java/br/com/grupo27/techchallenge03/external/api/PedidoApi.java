@@ -21,7 +21,7 @@ public class PedidoApi {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDTO> createPedido(@RequestBody PedidoDTO pedidoDTO) {
+    public ResponseEntity<?> createPedido(@RequestBody PedidoDTO pedidoDTO) {
         return controller.createPedido(pedidoDTO);
     }
 

@@ -21,5 +21,7 @@ public interface PedidoUseCase {
     List<Pedido> findPedidosByStatus(StatusPedido status);
 
     List<PedidoDTO> findPedidosAtivos();
+
+    PedidoDTO setStatusPago(Long idPedido);
     
 }

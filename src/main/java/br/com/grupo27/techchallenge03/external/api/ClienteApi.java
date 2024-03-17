@@ -49,6 +49,9 @@ public class ClienteApi {
         return clienteController.getClienteByCpf(cpf);
     }
 
-
+    @DeleteMapping("/cpf/{cpf}")
+    public ResponseEntity<Void> solicitarRemocaoDeDados(@PathVariable String cpf) {
+        return clienteController.solicitarRemocaoDeDados(cpf);
+    }
 
 }
