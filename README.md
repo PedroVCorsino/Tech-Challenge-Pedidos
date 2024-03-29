@@ -5,7 +5,7 @@ Desafio desenvolvido para a fase04 do curso de Software Architecture da FIAP Pó
 ## Versão
 2.2 [Dockerhub](https://hub.docker.com/repository/docker/pedrovcorsino/tech_challenge/tags "Go to Dockerhub")
 
-## Orquestraçao
+## Saga Coreografado
 [SAGA.md](https://github.com/PedroVCorsino/Tech-Challenge-Pedidos/blob/dev/pedro/SAGA.md) 
 
 ## Tecnologias
